@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyde Couture</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- VIDEO SLIDER -->
+    <div
+      id="videoSlider"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <video autoplay muted loop playsinline class="w-100 banner-video">
+            <source src="Video 1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="carousel-item">
+          <video autoplay muted loop playsinline class="w-100 banner-video">
+            <source src="Video 2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#videoSlider"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#videoSlider"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <h1 class="banner-title">Hyde Couture</h1>
+
+    <!-- CATEGORY SECTION -->
+    <div class="container category-section">
+      <h2 class="section-title">CATEGORIES</h2>
+
+      <!-- DESKTOP GRID -->
+      <div class="row justify-content-center flex-nowrap d-none d-md-flex">
+        <div class="col-auto category-card active" data-category="tshirt">
+          <h3 class="category-name">T-SHIRTS</h3>
+        </div>
+        <div class="col-auto category-card" data-category="tops">
+          <h3 class="category-name">TOPS</h3>
+        </div>
+        <div class="col-auto category-card" data-category="pants">
+          <h3 class="category-name">PANTS</h3>
+        </div>
+        <div class="col-auto category-card" data-category="dress">
+          <h3 class="category-name">DRESSES</h3>
+        </div>
+        <div class="col-auto category-card" data-category="jacket">
+          <h3 class="category-name">JACKETS</h3>
+        </div>
+        <div class="col-auto category-card" data-category="accessories">
+          <h3 class="category-name">ACCESSORIES</h3>
+        </div>
+      </div>
+
+      <!-- MOBILE SLIDER -->
+      <div class="d-md-none">
+        <div
+          id="categorySlider"
+          class="carousel slide"
+          data-bs-touch="true"
+          data-bs-interval="false"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="d-flex justify-content-center gap-3">
+                <div class="category-card active" data-category="tshirt">
+                  <h3 class="category-name">T-SHIRTS</h3>
+                </div>
+                <div class="category-card" data-category="tops">
+                  <h3 class="category-name">TOPS</h3>
+                </div>
+                <div class="category-card" data-category="pants">
+                  <h3 class="category-name">PANTS</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center gap-3">
+                <div class="category-card" data-category="dress">
+                  <h3 class="category-name">DRESSES</h3>
+                </div>
+                <div class="category-card" data-category="jacket">
+                  <h3 class="category-name">JACKETS</h3>
+                </div>
+                <div class="category-card" data-category="accessories">
+                  <h3 class="category-name">ACCESSORIES</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#categorySlider"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#categorySlider"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="section products-section">
+      <h2 id="categoryTitle">T-SHIRTS</h2>
+
+      <!-- Product Slider Container -->
+      <div class="product-slider-container">
+        <div id="productSlider" class="carousel slide" data-bs-interval="false">
+          <div id="productSliderInner" class="carousel-inner">
+            <!-- Product slides will be dynamically inserted here -->
+          </div>
+
+          <!-- Modern Navigation Buttons -->
+          <button class="slider-nav-btn prev-btn" id="productPrevBtn">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="slider-nav-btn next-btn" id="productNextBtn">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 18L15 12L9 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <!-- Slide Indicators -->
+        <div class="slide-indicators-container">
+          <div class="slide-indicators"></div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="view-btn">View more →</button>
+      </div>
+    </section>
+
+    <!-- NEW ARRIVALS SECTION -->
+    <section class="section new-arrivals-section">
+      <h2>NEW ARRIVALS</h2>
+
+      <!-- New Arrivals Slider Container -->
+      <div class="product-slider-container">
+        <div
+          id="newArrivalsSlider"
+          class="carousel slide"
+          data-bs-interval="false"
+        >
+          <div id="newArrivalsSliderInner" class="carousel-inner">
+            <!-- New Arrivals slides will be dynamically inserted here -->
+          </div>
+
+          <!-- Modern Navigation Buttons -->
+          <button class="slider-nav-btn prev-btn" id="newArrivalsPrevBtn">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="slider-nav-btn next-btn" id="newArrivalsNextBtn">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 18L15 12L9 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <!-- Slide Indicators -->
+        <div class="slide-indicators-container">
+          <div class="slide-indicators" id="newArrivalsIndicators"></div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="view-btn">View more →</button>
+      </div>
+    </section>
+
+    <!-- ALL PRODUCTS SECTION -->
+    <section class="section all-products-section">
+      <h2>ALL PRODUCTS</h2>
+
+      <!-- All Products Slider Container -->
+      <div class="product-slider-container">
+        <div
+          id="allProductsSlider"
+          class="carousel slide"
+          data-bs-interval="false"
+        >
+          <div id="allProductsSliderInner" class="carousel-inner">
+            <!-- All Products slides will be dynamically inserted here -->
+          </div>
+
+          <!-- Modern Navigation Buttons -->
+          <button class="slider-nav-btn prev-btn" id="allProductsPrevBtn">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="slider-nav-btn next-btn" id="allProductsNextBtn">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 18L15 12L9 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <!-- Slide Indicators -->
+        <div class="slide-indicators-container">
+          <div class="slide-indicators" id="allProductsIndicators"></div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="view-btn">View more →</button>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | MY GROODE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sancreek&family=Cinzel:wght@400;500;600;700&family=Vollkorn:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --rolex-green: #006039;
+            --rolex-gold: #C9B037;
+            --white: #FFFFFF;
+            --black: #000000;
+            --gray-light: #F5F5F5;
+            --gray-dark: #333333;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%);
+            color: var(--black);
+            line-height: 1.6;
+            font-family: 'Vollkorn', serif;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 96, 57, 0.1);
+            animation: slideDown 0.6s ease-out;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: normal;
+            color: var(--rolex-green);
+            font-family: 'Sancreek', cursive;
+            letter-spacing: 1px;
+        }
+        
+        .status {
+            background-color: var(--rolex-green);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Vollkorn', serif;
+            box-shadow: 0 2px 10px rgba(0, 96, 57, 0.3);
+        }
+        
+        .total-spending {
+            background: linear-gradient(135deg, var(--rolex-green) 0%, #004d2e 100%);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 96, 57, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .total-spending::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--rolex-gold);
+        }
+        
+        .total-spending h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+        
+        .total-spending p {
+            font-size: 16px;
+            opacity: 0.9;
+            font-family: 'Vollkorn', serif;
+        }
+        
+        .user-info, .order-history {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .user-info:hover, .order-history:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--rolex-green);
+            display: flex;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--rolex-gold);
+        }
+        
+        .section-title i {
+            margin-right: 12px;
+            color: var(--rolex-gold);
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .info-row:hover {
+            background-color: rgba(0, 96, 57, 0.03);
+            padding-left: 10px;
+            border-radius: 6px;
+        }
+        
+        .info-label {
+            width: 180px;
+            font-weight: 600;
+            color: var(--gray-dark);
+            font-family: 'Vollkorn', serif;
+            font-size: 16px;
+        }
+        
+        .info-value {
+            flex: 1;
+            color: var(--black);
+            font-family: 'Vollkorn', serif;
+            font-size: 16px;
+        }
+        
+        .address-section {
+            margin-top: 25px;
+        }
+        
+        .address-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--rolex-green);
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+        }
+        
+        .address-box {
+            background-color: rgba(0, 96, 57, 0.05);
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid var(--rolex-green);
+            font-family: 'Vollkorn', serif;
+            transition: all 0.3s ease;
+        }
+        
+        .address-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-link {
+            color: var(--rolex-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .map-link:hover {
+            color: #004d2e;
+            text-decoration: underline;
+        }
+        
+        .no-data {
+            text-align: center;
+            color: var(--gray-dark);
+            padding: 40px 0;
+            font-style: italic;
+            font-family: 'Vollkorn', serif;
+            font-size: 18px;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'Vollkorn', serif;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-edit {
+            background-color: var(--rolex-green);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 96, 57, 0.3);
+        }
+        
+        .btn-logout {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .btn-edit:hover {
+            background-color: #004d2e;
+        }
+        
+        .btn-logout:hover {
+            background-color: #333;
+        }
+        
+        .edit-form {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            background-color: rgba(0, 96, 57, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 96, 57, 0.1);
+            animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            flex: 1;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--rolex-green);
+            font-family: 'Vollkorn', serif;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: 'Vollkorn', serif;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--rolex-green);
+            box-shadow: 0 0 0 2px rgba(0, 96, 57, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn-save {
+            background-color: var(--rolex-green);
+            color: var(--white);
+        }
+        
+        .btn-cancel {
+            background-color: var(--gray-dark);
+            color: var(--white);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--rolex-green);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Vollkorn', serif;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .confirmation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .confirmation-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .confirmation-modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+        
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Vollkorn', serif;
+        }
+        
+        .modal-confirm {
+            background: var(--rolex-green);
+            color: white;
+        }
+        
+        .modal-cancel {
+            background: var(--gray-dark);
+            color: white;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .info-row {
+                flex-direction: column;
+            }
+            
+            .info-label {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+            
+            .actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="total-spending">
+            <h2>TOTAL SPENDING 0 MMK</h2>
+            <p>STATUS : EXCLUSIVE MEMBER</p>
+        </div>
+        
+        <div class="user-info">
+            <h2 class="section-title"><i class="fas fa-crown"></i> PROFILE INFORMATION</h2>
+            
+            <div class="info-row">
+                <div class="info-label">FULL NAME</div>
+                <div class="info-value" id="profile-name">MIN PAING OO</div>
+            </div>
+            
+            <div class="info-row">
+                <div class="info-label">TELEPHONE NO.</div>
+                <div class="info-value" id="profile-phone">+66823059272</div>
+            </div>
+            
+            <div class="info-row">
+                <div class="info-label">EMAIL</div>
+                <div class="info-value" id="profile-email">MINSITTMANDALAY137@GMAIL.COM</div>
+            </div>
+            
+            <div class="info-row">
+                <div class="info-label">BIRTH DATE</div>
+                <div class="info-value" id="profile-birthdate">30 JUNE 2004</div>
+            </div>
+            
+            <div class="address-section">
+                <h3 class="address-title">ADDRESS INFORMATION</h3>
+                <div class="address-box">
+                    <div class="info-row">
+                        <div class="info-label">STREET</div>
+                        <div class="info-value" id="profile-street">20TH STREET 86TH STREET</div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">TOWNSHIP</div>
+                        <div class="info-value" id="profile-township">DOWNTOWN</div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">STATE</div>
+                        <div class="info-value" id="profile-state">BANGKOK</div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">POSTAL CODE</div>
+                        <div class="info-value" id="profile-postal">10900</div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">COUNTRY</div>
+                        <div class="info-value" id="profile-country">THAILAND</div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">CITY</div>
+                        <div class="info-value" id="profile-city">BANGKOK</div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">COMPLETE ADDRESS</div>
+                        <div class="info-value" id="profile-complete-address">20TH STREET 86TH STREET, DOWNTOWN, BANGKOK, THAILAND 10900</div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">GOOGLE MAP LINK</div>
+                        <div class="info-value">
+                            <a href="https://maps.google.com/?q=20TH+STREET+86TH+STREET+BANGKOK" target="_blank" class="map-link" id="profile-google-link">
+                                <i class="fas fa-map-marker-alt"></i>
+                                View on Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="edit-form" id="edit-form">
+                <h3 class="section-title"><i class="fas fa-edit"></i> Edit Profile Information</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-name">Full Name</label>
+                        <input type="text" id="edit-name" value="MIN PAING OO" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-phone">Phone Number</label>
+                        <input type="tel" id="edit-phone" value="+66823059272" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-email">Email</label>
+                        <input type="email" id="edit-email" value="MINSITTMANDALAY137@GMAIL.COM" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-birthdate">Birth Date</label>
+                        <input type="date" id="edit-birthdate" value="2004-06-30" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-street">Street</label>
+                        <input type="text" id="edit-street" value="20TH STREET 86TH STREET" placeholder="Street Address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-township">Township</label>
+                        <input type="text" id="edit-township" value="DOWNTOWN" placeholder="Township" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-state">State</label>
+                        <input type="text" id="edit-state" value="BANGKOK" placeholder="State/Province" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-postal">Postal Code</label>
+                        <input type="text" id="edit-postal" value="10900" placeholder="Postal Code" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-country">Country</label>
+                        <select id="edit-country" required>
+                            <option value="">Select Country</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-city">City</label>
+                        <select id="edit-city" required>
+                            <option value="">Select City</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-complete-address">Complete Address</label>
+                    <textarea id="edit-complete-address" rows="3" placeholder="Enter Complete Address" required>20TH STREET 86TH STREET, DOWNTOWN, BANGKOK, THAILAND 10900</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-google-link">Google Map Link</label>
+                    <input type="text" id="edit-google-link" value="https://maps.google.com/?q=20TH+STREET+86TH+STREET+BANGKOK" placeholder="Google Map Link" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-cancel" id="cancel-edit"><i class="fas fa-times"></i> Cancel</button>
+                    <button class="btn btn-save" id="save-changes"><i class="fas fa-check"></i> Save Changes</button>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-edit" id="edit-profile"><i class="fas fa-edit"></i> EDIT PROFILE</button>
+                <button class="btn btn-logout" id="logout-btn"><i class="fas fa-sign-out-alt"></i> LOG OUT</button>
+            </div>
+        </div>
+        
+        <div class="order-history">
+            <h2 class="section-title"><i class="fas fa-history"></i> ORDER HISTORY</h2>
+            <div class="no-data">NO ORDER HISTORY AVAILABLE</div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text">Profile updated successfully!</span>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="logout-modal">
+        <div class="modal-content">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--rolex-green); margin-bottom: 15px;">Confirm Logout</h3>
+            <p style="font-family: 'Vollkorn', serif; margin-bottom: 20px;">Are you sure you want to log out?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-cancel" id="modal-cancel">Cancel</button>
+                <button class="modal-btn modal-confirm" id="modal-confirm">Log Out</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // City data
+        const myanmarCities = [
+            {"name_en": "Yangon"}, {"name_en": "Mandalay"}, {"name_en": "Nay Pyi Taw"}, {"name_en": "Mawlamyine"}, {"name_en": "Bago"},
+            {"name_en": "Pathein"}, {"name_en": "Monywa"}, {"name_en": "Meiktila"}, {"name_en": "Taunggyi"}, {"name_en": "Myitkyina"},
+            {"name_en": "Lashio"}, {"name_en": "Sittwe"}, {"name_en": "Pyay"}, {"name_en": "Hinthada"}, {"name_en": "Magway"},
+            {"name_en": "Myeik"}, {"name_en": "Taungoo"}, {"name_en": "Myingyan"}, {"name_en": "Dawei"}, {"name_en": "Pakokku"},
+            {"name_en": "Pyin Oo Lwin"}, {"name_en": "Hpa-An"}, {"name_en": "Kyaukse"}, {"name_en": "Shwebo"}, {"name_en": "Sagaing"},
+            {"name_en": "Tachileik"}, {"name_en": "Hakha"}, {"name_en": "Loikaw"}, {"name_en": "Kengtung"}, {"name_en": "Thanlyin"},
+            {"name_en": "Twantay"}, {"name_en": "Kyauktan"}, {"name_en": "Bogale"}, {"name_en": "Pyapon"}, {"name_en": "Kyaiklat"},
+            {"name_en": "Maubin"}, {"name_en": "Nyaungdon"}, {"name_en": "Dedaye"}, {"name_en": "Kyaukpyu"}, {"name_en": "Thandwe"},
+            {"name_en": "Toungup"}, {"name_en": "Gwa"}, {"name_en": "Manaung"}, {"name_en": "Kyeintali"}, {"name_en": "Minbya"},
+            {"name_en": "Mrauk-U"}, {"name_en": "Pauktaw"}, {"name_en": "Myebon"}, {"name_en": "Ann"}, {"name_en": "Buthidaung"},
+            {"name_en": "Maungdaw"}, {"name_en": "Kyauktaw"}, {"name_en": "Ponnagyun"}, {"name_en": "Rathedaung"}, {"name_en": "Kawthaung"},
+            {"name_en": "Bokpyin"}, {"name_en": "Yebyu"}, {"name_en": "Launglon"}, {"name_en": "Thayetchaung"}, {"name_en": "Tanintharyi"},
+            {"name_en": "Kyunsu"}, {"name_en": "Myitta"}, {"name_en": "Kawkareik"}, {"name_en": "Myawaddy"}, {"name_en": "Kyeikdon"},
+            {"name_en": "Kyeikmaraw"}, {"name_en": "Hlaingbwe"} , {"name_en" : "Other"}
+        ];
+
+        const thailandCities = [
+            {"name_en": "Bangkok"}, {"name_en": "Samut Prakan"}, {"name_en": "Nonthaburi"}, {"name_en": "Pathum Thani"}, {"name_en": "Phra Nakhon Si Ayutthaya"},
+            {"name_en": "Ang Thong"}, {"name_en": "Loburi"}, {"name_en": "Sing Buri"}, {"name_en": "Chai Nat"}, {"name_en": "Saraburi"},
+            {"name_en": "Chon Buri"}, {"name_en": "Rayong"}, {"name_en": "Chanthaburi"}, {"name_en": "Trat"}, {"name_en": "Chachoengsao"},
+            {"name_en": "Prachin Buri"}, {"name_en": "Nakhon Nayok"}, {"name_en": "Sa Kaeo"}, {"name_en": "Nakhon Ratchasima"}, {"name_en": "Buri Ram"},
+            {"name_en": "Surin"}, {"name_en": "Si Sa Ket"}, {"name_en": "Ubon Ratchathani"}, {"name_en": "Yasothon"}, {"name_en": "Chaiyaphum"},
+            {"name_en": "Amnat Charoen"}, {"name_en": "Bueng Kan"}, {"name_en": "Nong Bua Lam Phu"}, {"name_en": "Khon Kaen"}, {"name_en": "Udon Thani"},
+            {"name_en": "Loei"}, {"name_en": "Nong Khai"}, {"name_en": "Maha Sarakham"}, {"name_en": "Roi Et"}, {"name_en": "Kalasin"},
+            {"name_en": "Sakon Nakhon"}, {"name_en": "Nakhon Phanom"}, {"name_en": "Mukdahan"}, {"name_en": "Chiang Mai"}, {"name_en": "Lamphun"},
+            {"name_en": "Lampang"}, {"name_en": "Uttaradit"}, {"name_en": "Phrae"}, {"name_en": "Nan"}, {"name_en": "Phayao"},
+            {"name_en": "Chiang Rai"}, {"name_en": "Mae Hong Son"}, {"name_en": "Nakhon Sawan"}, {"name_en": "Uthai Thani"}, {"name_en": "Kamphaeng Phet"},
+            {"name_en": "Tak"}, {"name_en": "Sukhothai"}, {"name_en": "Phitsanulok"}, {"name_en": "Phichit"}, {"name_en": "Phetchabun"},
+            {"name_en": "Ratchaburi"}, {"name_en": "Kanchanaburi"}, {"name_en": "Suphan Buri"}, {"name_en": "Nakhon Pathom"}, {"name_en": "Samut Sakhon"},
+            {"name_en": "Samut Songkhram"}, {"name_en": "Phetchaburi"}, {"name_en": "Prachuap Khiri Khan"}, {"name_en": "Nakhon Si Thammarat"}, {"name_en": "Krabi"},
+            {"name_en": "Phangnga"}, {"name_en": "Phuket"}, {"name_en": "Surat Thani"}, {"name_en": "Ranong"}, {"name_en": "Chumphon"},
+            {"name_en": "Songkhla"}, {"name_en": "Satun"}, {"name_en": "Trang"}, {"name_en": "Phatthalung"}, {"name_en": "Pattani"},
+            {"name_en": "Yala"}, {"name_en": "Narathiwat"}, {"name_en" : "Other"}
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize country and city dropdowns
+            const countrySelect = document.getElementById('edit-country');
+            const citySelect = document.getElementById('edit-city');
+
+            // Populate country dropdown
+            const countries = ['Myanmar', 'Thailand'];
+            countries.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                countrySelect.appendChild(opt);
+            });
+
+            // Set default country
+            countrySelect.value = 'Thailand';
+            
+            // Populate cities for default country
+            populateCities('Thailand');
+
+            // On country change, load corresponding cities
+            countrySelect.addEventListener('change', () => {
+                const country = countrySelect.value;
+                populateCities(country);
+            });
+
+            function populateCities(country) {
+                citySelect.innerHTML = '<option value="">Select City</option>';
+
+                let cities = [];
+                if (country === 'Myanmar') {
+                    cities = myanmarCities.map(city => city.name_en);
+                } else if (country === 'Thailand') {
+                    cities = thailandCities.map(city => city.name_en);
+                }
+
+                cities.forEach(city => {
+                    const opt = document.createElement('option');
+                    opt.value = city;
+                    opt.textContent = city;
+                    citySelect.appendChild(opt);
+                });
+                
+                // Set default city
+                if (country === 'Thailand') {
+                    citySelect.value = 'Bangkok';
+                }
+            }
+
+            // Edit profile functionality
+            const editButton = document.getElementById('edit-profile');
+            const editForm = document.getElementById('edit-form');
+            const cancelEdit = document.getElementById('cancel-edit');
+            const saveChanges = document.getElementById('save-changes');
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notification-text');
+            const logoutBtn = document.getElementById('logout-btn');
+            const logoutModal = document.getElementById('logout-modal');
+            const modalCancel = document.getElementById('modal-cancel');
+            const modalConfirm = document.getElementById('modal-confirm');
+            
+            editButton.addEventListener('click', function() {
+                editForm.style.display = 'block';
+                editButton.style.display = 'none';
+            });
+            
+            cancelEdit.addEventListener('click', function() {
+                editForm.style.display = 'none';
+                editButton.style.display = 'block';
+            });
+            
+            saveChanges.addEventListener('click', function() {
+                // Update displayed values with form values
+                document.getElementById('profile-name').textContent = document.getElementById('edit-name').value;
+                document.getElementById('profile-phone').textContent = document.getElementById('edit-phone').value;
+                document.getElementById('profile-email').textContent = document.getElementById('edit-email').value;
+                document.getElementById('profile-birthdate').textContent = formatDate(document.getElementById('edit-birthdate').value);
+                
+                // Update address display
+                document.getElementById('profile-street').textContent = document.getElementById('edit-street').value;
+                document.getElementById('profile-township').textContent = document.getElementById('edit-township').value;
+                document.getElementById('profile-state').textContent = document.getElementById('edit-state').value;
+                document.getElementById('profile-postal').textContent = document.getElementById('edit-postal').value;
+                document.getElementById('profile-country').textContent = document.getElementById('edit-country').value;
+                document.getElementById('profile-city').textContent = document.getElementById('edit-city').value;
+                document.getElementById('profile-complete-address').textContent = document.getElementById('edit-complete-address').value;
+                
+                // Update Google Map link
+                const googleLink = document.getElementById('edit-google-link').value;
+                const mapLink = document.getElementById('profile-google-link');
+                mapLink.href = googleLink;
+                
+                editForm.style.display = 'none';
+                editButton.style.display = 'block';
+                
+                // Show success notification
+                showNotification('Profile updated successfully!');
+            });
+            
+            // Logout functionality
+            logoutBtn.addEventListener('click', function() {
+                logoutModal.classList.add('active');
+            });
+            
+            modalCancel.addEventListener('click', function() {
+                logoutModal.classList.remove('active');
+            });
+            
+            modalConfirm.addEventListener('click', function() {
+                logoutModal.classList.remove('active');
+                showNotification('You have been logged out.');
+            });
+            
+            // Notification function
+            function showNotification(message) {
+                notificationText.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Helper function to format date
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                return date.toLocaleDateString('en-US', options).toUpperCase();
+            }
+        });
+    </script>
+</body>
+</html>
