@@ -1,0 +1,7 @@
+Rule 1 : Do not rewrite my queries.
+Rule 2 : Do not touch my backend codes.
+Rule 3 : Do not change or touch the style of class main-content. In the style.css main-content has margin-left : 350px because there will be a nav bar at that area. So everything should be inside main-content and get along with nav bar.
+Rule 4 : Do not change the data attributes name extracted from database.
+Rule 5 : Do not change my style of writing PHP. I write HTML contents inside php echo. do not change that style. 
+Rule 6 : Output in markdown code blocks with the filename to make it easy to copy. Do not give the code in plain text in stupid way.
+Rule 7 : Always remember all the above rules.
