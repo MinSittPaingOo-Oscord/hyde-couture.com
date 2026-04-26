@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="d-lg-none text-end">
         <button class="btn btn-close btn-close-white" id="closeSidebar"></button>
     </div>
-    <h4 class="text-center mb-4 title">Admin Dashboard</h4>
+    <h4 class="text-center mb-4 title">POS System</h4>
     <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link text-white" href="profile.php"><i class="bi bi-person me-2"></i>Profile</a>

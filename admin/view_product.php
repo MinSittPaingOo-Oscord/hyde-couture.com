@@ -509,10 +509,10 @@ $relatedProducts = $conn->query($relatedQuery);
 
                         <div class="price">
                             <?php if ($product['discountedPrice']): ?>
-                                <span class="discounted"><?= number_format($product['price']) ?> MMK</span>
-                                <?= number_format($product['discountedPrice']) ?> MMK
+                                <span class="discounted"><?= number_format($product['price']) ?> BHAT</span>
+                                <?= number_format($product['discountedPrice']) ?> BHAT
                             <?php else: ?>
-                                <?= number_format($product['price']) ?> MMK
+                                <?= number_format($product['price']) ?> BHAT
                             <?php endif; ?>
                         </div>
 
@@ -599,7 +599,7 @@ $relatedProducts = $conn->query($relatedQuery);
                                             <span class="related-discounted"><?= number_format($rel['price']) ?></span>
                                         <?php endif; ?>
                                         <span class="related-price">
-                                            <?= number_format($rel['discountedPrice'] ?: $rel['price']) ?> MMK
+                                            <?= number_format($rel['discountedPrice'] ?: $rel['price']) ?> BHAT
                                         </span>
                                     </div>
                                     <?php if ($rel['preorder']): ?>

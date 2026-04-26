@@ -239,7 +239,7 @@ $result = $conn->query($query);
                 <tr>
                     <th>ID</th>
                     <th>Product Name</th>
-                    <th>Price (MMK)</th>
+                    <th>Price (BHAT)</th>
                     <th>Categories</th>
                     <th>Posted Date</th>
                     <!-- <th>Status</th> -->
@@ -264,7 +264,7 @@ $result = $conn->query($query);
                             <?php echo number_format($row['discountedPrice']); ?>
                         <?php else: ?>
                             <?php echo number_format($row['price']); ?>
-                        <?php endif; ?> MMK
+                        <?php endif; ?> BHAT
                     </td>
                     <td data-label="Categories">
                         <?php echo $row['categories'] ? htmlspecialchars($row['categories']) : '<em style="color:#999">-</em>'; ?>

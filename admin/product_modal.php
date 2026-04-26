@@ -147,7 +147,7 @@ $related = $conn->query("
                 <?php if($p['discountedPrice']): ?>
                     <span class="old-price"><?= number_format($p['price']) ?></span>
                 <?php endif; ?>
-                <?= number_format($p['discountedPrice'] ?: $p['price']) ?> MMK
+                <?= number_format($p['discountedPrice'] ?: $p['price']) ?> BHAT
             </div>
 
             <p><strong>Description:</strong><br><?= nl2br(htmlspecialchars($p['description'])) ?></p>
@@ -203,7 +203,7 @@ $related = $conn->query("
                         <?php if($r['discountedPrice']): ?>
                             <span class="related-old"><?= number_format($r['price']) ?></span>
                         <?php endif; ?>
-                        <span class="related-price"><?= number_format($r['discountedPrice'] ?: $r['price']) ?> MMK</span>
+                        <span class="related-price"><?= number_format($r['discountedPrice'] ?: $r['price']) ?> BHAT</span>
                     </div>
                     <?php if($r['preorder']): ?>
                         <div class="related-preorder">PRE-ORDER</div>

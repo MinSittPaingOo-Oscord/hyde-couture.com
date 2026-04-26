@@ -197,7 +197,7 @@ $subcategories = $conn->query("
             <input type="text" name="productName" class="form-input" required>
         </div>
         <div class="form-group">
-            <label>Price (MMK)</label>
+            <label>Price (BHAT)</label>
             <input type="number" name="price" class="form-input" required>
         </div>
         <div class="form-group">

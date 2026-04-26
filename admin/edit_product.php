@@ -160,7 +160,7 @@ $subcategories = $conn->query("SELECT c.*, p.categoryName AS parentName FROM cat
             <input type="text" name="productName" class="form-input" value="<?= htmlspecialchars($product['productName']) ?>" required>
         </div>
         <div class="form-group">
-            <label>Price (MMK)</label>
+            <label>Price (BHAT)</label>
             <input type="number" name="price" class="form-input" value="<?= $product['price'] ?>" required>
         </div>
         <div class="form-group">

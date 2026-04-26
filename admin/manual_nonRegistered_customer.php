@@ -31,7 +31,7 @@ if ($export === 'csv') {
     header('Content-Disposition: attachment; filename=manual_orders_non_registered_customers_' . date('Ymd_His') . '.csv');
 
     $out = fopen('php://output', 'w');
-    fputcsv($out, ['Order ID', 'Customer Name', 'Sub Total (MMK)', 'Order Date', 'Status']);
+    fputcsv($out, ['Order ID', 'Customer Name', 'Sub Total (BHAT)', 'Order Date', 'Status']);
 
     while ($row = $csvResult->fetch_assoc()) {
         fputcsv($out, [
@@ -417,7 +417,7 @@ if ($export === 'csv') {
                 echo "<td data-label='Name'>" . htmlspecialchars($row['manualCustomerName']) . "</td>";
                
                 
-                echo "<td data-label='Total Cost'><strong>" . number_format($row['totalCost']) . " MMK</strong></td>";
+                echo "<td data-label='Total Cost'><strong>" . number_format($row['totalCost']) . " BHAT</strong></td>";
                 echo "<td data-label='Order Date'>" . date('M j, Y', strtotime($row['orderDate'])) . "</td>";
                 echo "<td data-label='Status'><span class='status-badge $statusClass'>$statusText</span></td>";
                 echo "<td data-label='Action'><a href='specific_manual_order_non_registered.php?orderID=" . urlencode($row['orderID']) . "' class='btn-view'>View</a></td>";
