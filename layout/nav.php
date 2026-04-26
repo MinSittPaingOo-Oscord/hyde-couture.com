@@ -1,404 +1,354 @@
 <?php
-include "../connection/connectdb.php";
-
-$query_parent_category = " SELECT DISTINCT p.* FROM category p INNER JOIN category c ON p.categoryID = c.parentID WHERE p.parentID IS NULL";
-$result_parent_category = $conn->query($query_parent_category);
-
-$query_parent_child0_category = "SELECT p.* FROM category p LEFT JOIN category c ON p.categoryID = c.parentID WHERE p.parentID IS NULL AND c.categoryID IS NULL";
-$result_parent_child0_category = $conn->query($query_parent_child0_category);
-
 if(!isset($currentPage)){
   $currentPage = 'something.php';
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Matter Makers Navbar — Rolex Green Slide Menu</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Sancreek&family=Vollkorn:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <style>
-    :root{
-      --rolex-green: #0A8A3B; 
-      --rolex-accent: #6ef27a; 
-      --menu-text: #ffffff;
-      --overlay: rgba(0,0,0,0.35);
-    }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Sancreek&display=swap" rel="stylesheet">
 
-    #hyde-nav {
-      margin: 0;
-      font-family: 'Vollkorn', serif;
-      color: #222;
-      background-color: #fff;
-    }
+<style>
+#hyde-nav {
+  --forest:     #002D16;
+  --emerald:    #005A2B;
+  --gold:       #C9A84C;
+  --gold-light: #E8C97A;
+  --cream:      #FAFAF8;
+  --ink:        #111111;
+  --border:     rgba(201,168,76,0.20);
+}
+#hyde-nav * { box-sizing: border-box; margin: 0; padding: 0; }
+#hyde-nav a { text-decoration: none !important; }
 
-    #hyde-nav a{
-      text-decoration : none !important;
-    }
+/* ── Promo Bar ── */
+#hyde-nav .promo-bar {
+  background: var(--forest);
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  padding: 6px 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.68rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+#hyde-nav .promo-bar strong { color: var(--gold-light); }
 
-    #hyde-nav .navbar-custom .row .icon-group a{
-      color : black !important;
-    }
+/* ── Navbar ── */
+#hyde-nav .navbar-custom {
+  background: var(--cream);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 0;
+}
+#hyde-nav .navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  position: relative;
+}
 
-    #hyde-nav .navbar-custom {
-      background-color: #fff;
-      border-bottom: 1px solid #eee;
-      padding: 0.4rem 0;
-    }
-    #hyde-nav .navbar-brand {
-      font-family: 'Sancreek', cursive;
-      font-weight: 400;
-      letter-spacing: 2px;
-      font-size: 1.7rem;
-      color: #000;
-      white-space: nowrap;
-      text-transform: uppercase;
-      transition: font-size 0.3s ease;
-    }
+/* Hamburger */
+#hyde-nav .hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 34px;
+}
+#hyde-nav .hamburger-btn span {
+  display: block;
+  height: 1.5px;
+  background: var(--ink);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+#hyde-nav .hamburger-btn span:nth-child(1) { width: 24px; }
+#hyde-nav .hamburger-btn span:nth-child(2) { width: 16px; }
+#hyde-nav .hamburger-btn span:nth-child(3) { width: 24px; }
+#hyde-nav .hamburger-btn:hover span { background: var(--emerald); }
+#hyde-nav .hamburger-btn.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); width: 24px; }
+#hyde-nav .hamburger-btn.active span:nth-child(2) { opacity: 0; }
+#hyde-nav .hamburger-btn.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 24px; }
 
-    #hyde-nav .navbar-toggler { border: none; background: none; padding: 0; }
-    #hyde-nav .navbar-toggler i { font-size: 1.2rem; color: #000; }
+/* Brand */
+#hyde-nav .navbar-brand {
+  font-family: 'Sancreek', cursive;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--ink);
+  letter-spacing: 3px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+#hyde-nav .navbar-brand:hover { color: var(--emerald); }
 
-    #hyde-nav .menu-overlay {
-      position: fixed;
-      inset: 0;
-      background : transparent;
-      z-index: 1040;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.28s ease, visibility 0.28s ease;
-    }
-    #hyde-nav .menu-overlay.visible {
-      background: var(--overlay);
-      visibility: visible;
-      opacity: 1;
-    }
+/* Icons */
+#hyde-nav .icon-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#hyde-nav .icon-group a {
+  color: var(--ink);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: color 0.2s, transform 0.2s;
+}
+#hyde-nav .icon-group a:hover {
+  color: var(--emerald);
+  transform: translateY(-1px);
+}
+#hyde-nav .icon-group a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 14px;
+  height: 1px;
+  background: var(--gold);
+  transition: transform 0.2s;
+}
+#hyde-nav .icon-group a:hover::after { transform: translateX(-50%) scaleX(1); }
 
-    #hyde-nav .side-menu {
-      position: fixed;
-      left: -100%; 
-      top: 0;
-      height: 100vh;
-      z-index: 1050;
-      overflow-y: auto;
-      background: #005A2B;
-      color: var(--menu-text);
-      box-shadow: 8px 0 30px rgba(0,0,0,0.25);
-      transition: left 0.32s cubic-bezier(.2,.9,.2,1);
-      -webkit-overflow-scrolling: touch;
-      padding: 1.2rem 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-    #hyde-nav .side-menu.open { left: 0; }
+/* ── Overlay ── */
+#hyde-nav .menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  z-index: 1040;
+  visibility: hidden;
+  transition: background 0.35s, visibility 0.35s, backdrop-filter 0.35s;
+}
+#hyde-nav .menu-overlay.visible {
+  background: rgba(0,0,0,0.4);
+  visibility: visible;
+  backdrop-filter: blur(3px);
+}
 
-    @media (max-width: 575.98px) {
-      #hyde-nav .side-menu { width: 100%; }
-    }
-    @media (min-width: 576px) and (max-width: 991.98px) {
-      #hyde-nav .side-menu { width: 40%; }
-    }
-    @media (min-width: 992px) {
-      #hyde-nav .side-menu { width: 30%; min-width: 300px; max-width: 380px; }
-    }
+/* ── Side Drawer ── */
+#hyde-nav .side-menu {
+  position: fixed;
+  left: -100%;
+  top: 0;
+  height: 100vh;
+  z-index: 1050;
+  overflow-y: auto;
+  background: var(--forest);
+  box-shadow: 16px 0 60px rgba(0,0,0,0.4);
+  transition: left 0.4s cubic-bezier(.16,1,.3,1);
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+}
+#hyde-nav .side-menu::-webkit-scrollbar { display: none; }
+#hyde-nav .side-menu.open { left: 0; }
 
-    #hyde-nav .side-menu .close-btn {
-      align-self: flex-end;
-      background: transparent;
-      border: none;
-      color: var(--menu-text);
-      font-size: 1rem;
-      cursor: pointer;
-      padding: 0.25rem;
-      margin-bottom: 0.2rem;
-    }
+@media (max-width: 480px)  { #hyde-nav .side-menu { width: 80%; } }
+@media (min-width: 481px)  { #hyde-nav .side-menu { width: 300px; } }
 
-    #hyde-nav .side-menu .menu-header {
-      display:flex;
-      align-items:center;
-      gap: 0.6rem;
-      margin-bottom: 0.6rem;
-    }
-    
-    #hyde-nav .side-menu .menu-header h3 {
-      margin: 0;
-      font-family: 'Cinzel', serif;
-      letter-spacing: 1px;
-      font-weight: 700;
-      color: var(--menu-text);
-      font-size: 0.9rem;
-    }
-    #hyde-nav .side-menu .menu-subtitle {
-      font-size: 0.78rem;
-      opacity: 0.92;
-      margin-bottom: 0.8rem;
-      color: rgba(255,255,255,0.95);
-    }
+/* Drawer Header */
+#hyde-nav .menu-head {
+  padding: 30px 32px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+#hyde-nav .menu-head .brand-wrap .brand {
+  font-family: 'Sancreek', cursive;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  display: block;
+}
+#hyde-nav .menu-head .brand-wrap .tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+  display: block;
+}
+#hyde-nav .close-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+#hyde-nav .close-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
 
-    #hyde-nav .mmenu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.22rem;
-    }
-    #hyde-nav .mmenu li {
-      width: 100%;
-    }
+/* Nav Links */
+#hyde-nav .menu-body { padding: 12px 0; flex: 1; }
 
-    #hyde-nav .menu-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.6rem;
-      padding: 0.45rem 0.15rem;
-      cursor: pointer;
-      user-select: none;
-      border-radius: 4px;
-      transition: background 0.14s ease;
-      font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 0.5px;
-      color: var(--menu-text);
-    }
-    #hyde-nav .menu-item:hover { background: rgba(255,255,255,0.03); }
+#hyde-nav .nav-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  padding: 18px 32px 8px;
+  display: block;
+}
 
-    #hyde-nav .toggle-sign {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 28px;
-      min-height: 28px;
-      font-size: 1.05rem;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--menu-text);
-      transition: transform 0.18s ease, background 0.18s ease;
-    }
-    #hyde-nav .toggle-sign.open { transform: rotate(45deg); }
+#hyde-nav .nav-link-item {
+  display: block;
+  padding: 12px 32px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.80);
+  border-left: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+#hyde-nav .nav-link-item:hover {
+  color: var(--gold-light);
+  border-left-color: var(--gold);
+  padding-left: 38px;
+  background: rgba(201,168,76,0.05);
+}
 
-    #hyde-nav .submenu {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding-left: 0.6rem;
-      margin-top: 0.10rem;
-      margin-bottom: 0.10rem;
-    }
+#hyde-nav .nav-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 10px 32px;
+}
 
-    #hyde-nav .side-menu a,
-    #hyde-nav .side-menu a:link,
-    #hyde-nav .side-menu a:visited {
-      color: var(--menu-text);   
-      text-decoration: none;     
-      padding: 0.4rem 0.15rem;
-      display: block;
-      font-size: 0.7rem;          
-      font-weight: 700;
-    }
+/* Bottom links */
+#hyde-nav .menu-bottom {
+  border-top: 1px solid var(--border);
+  padding: 12px 0 28px;
+}
+#hyde-nav .menu-bottom .nav-link-item {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 2px;
+}
+#hyde-nav .menu-bottom .nav-link-item:hover { color: rgba(255,255,255,0.85); }
+</style>
 
-    #hyde-nav .accent-lime { color: #8CFF6B; }
-    #hyde-nav .accent-red { color: #ff6b6b; }
-
-    #hyde-nav .menu-bottom {
-      margin-top: auto;
-      padding-top: 0.6rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    #hyde-nav .menu-item:focus {
-      outline: 2px dashed rgba(255,255,255,0.12); 
-      outline-offset: 3px; 
-    }
-
-  </style>
-</head>
-<body>
 <div id="hyde-nav">
 
-  <div class="container-fluid navbar-custom">
-    <div class="row align-items-center text-center px-2">
-
-      <div class="col-2 d-flex justify-content-start">
-        <button id="hamburgerBtn" class="navbar-toggler" aria-label="Open menu" type="button">
-          <i class="bi bi-list"></i>
-        </button>
-      </div>
-
-      <div class="col-8 d-flex justify-content-center">
-        <a class="navbar-brand m-0" href="../views/index.php">HYDE COUTURE</a>
-      </div>
-
-      <div class="col-2 d-flex justify-content-end align-items-center icon-group gap-3">
-        <a href="../views/user_fav.php"><i class="bi bi-heart fs-5"></i></a>
-        <a href="../views/cart.php"><i class="bi bi-bag fs-5"></i></a>
-        <a href="../views/profile.php"><i class="bi bi-person fs-5"></i></a>
-    </div>
-    </div>
+  <?php if($currentPage != 'register.php'): ?>
+  <div class="promo-bar">
+    <strong>NEW CUSTOMERS</strong> &mdash; 6 USD OFF YOUR FIRST PURCHASE &nbsp;&middot;&nbsp; CODE: <strong>NEWUSER</strong>
   </div>
-<?php
-  if($currentPage!='register.php'){
-    ?>
-         <div class="promo-bar" style="background: #005A2B; color:#fff; text-align:center; padding:6px 10px; font-size:0.60rem; font-family:'Cinzel', serif;">
-          <strong>NEW CUSTOMERS</strong> GET 6 USD OFF YOUR FIRST PURCHASE.
-          <strong>USE CODE: NEWUSER</strong> AT CHECK OUT
-        </div>
-    <?php
-  }
-?>
- 
+  <?php endif; ?>
 
-  <div id="menuOverlay" class="menu-overlay" tabindex="-1" aria-hidden="true"></div>
+  <nav class="navbar-custom">
+    <div class="navbar-inner">
 
-  <aside id="sideMenu" class="side-menu" aria-hidden="true" aria-labelledby="menuTitle" role="dialog">
-    <button class="close-btn" id="menuCloseBtn" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+      <button id="hamburgerBtn" class="hamburger-btn" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
 
-    <div class="menu-subtitle">Explore — Collections / Men / Women / Accessories</div>
+      <a class="navbar-brand" href="../views/index.php">HYDE COUTURE</a>
 
-    <ul class="mmenu" id="mainMenu">
+      <div class="icon-group">
+        <a href="../views/user_fav.php" aria-label="Favourites"><i class="bi bi-heart"></i></a>
+        <a href="../views/cart.php"     aria-label="Cart"><i class="bi bi-bag"></i></a>
+        <a href="../views/profile.php"  aria-label="Account"><i class="bi bi-person"></i></a>
+      </div>
 
-      <li>
-        <div class="menu-item" tabindex="0"><span class="accent-red"><a href='../views/index.php'>ALL</a></span></div>
-      </li>
-      
-      <?php 
-               if ($result_parent_category && $result_parent_category->num_rows > 0) {
-                  while ($row_parent_category = $result_parent_category ->fetch_assoc()) {
-                      echo "<li>";
-                          $parent_id = $row_parent_category['categoryID'];
-                          $submenu_id = "submenu_" . $parent_id;
+    </div>
+  </nav>
 
-                          echo "<div class='menu-item' data-toggle='collapse' tabindex='0' role='button' aria-expanded='false' aria-controls='".$submenu_id."'>";
-                              echo "<span>".$row_parent_category['categoryName']."</span>";
-                              echo "<span class='toggle-sign' aria-hidden='true'>+</span>";
-                          echo "</div>";
+  <div id="menuOverlay" class="menu-overlay" aria-hidden="true"></div>
 
-                          $query_child_category = "SELECT * FROM category WHERE parentID =".intval($parent_id);
-                          $result_child_category = $conn->query($query_child_category);
+  <aside id="sideMenu" class="side-menu" aria-hidden="true" role="dialog">
 
-                          echo "<div id='".$submenu_id."' class='submenu' aria-hidden='true'>";
-                      
-                          if ($result_child_category && $result_child_category->num_rows > 0) {
-                              while ($row_child_category = $result_child_category ->fetch_assoc()) {
-                                  $child_link = "../views/index.php?id=" . $row_child_category['categoryID'];
-                                  echo "<a href='".$child_link."'>".$row_child_category['categoryName']."</a>";
-                              }
-                          }
-                          echo "</div>";
-                          echo"</li>";
-                        }
-                    }
-                  
-                    if ($result_parent_child0_category && $result_parent_child0_category->num_rows > 0) {
-                      while ($row_parent_child0_category = $result_parent_child0_category ->fetch_assoc()) {
-                        echo "<li>";
-                        $child_link = "../views/index.php?id=" . $row_parent_child0_category['categoryID'];
-                        echo "<div class='menu-item' tabindex='0'><span class='accent-red'><a href='".$child_link."'>".$row_parent_child0_category['categoryName']."</a></span></div>";
-                        echo "</li>";
-                      }
-                    }
-                  ?>
+    <div class="menu-head">
+      <div class="brand-wrap">
+        <span class="brand">HYDE COUTURE</span>
+        <span class="tagline">Refined Essentials</span>
+      </div>
+      <button class="close-btn" id="menuCloseBtn" aria-label="Close">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
 
-                  <div class="menu-bottom">
-                      <li>
-                        <div class="menu-item" tabindex="0"><a href="../views/about.php" style="color:var(--menu-text); text-decoration:none">ABOUT US</a></div>
-                      </li>
-                      <li>
-                          <div class="menu-item" tabindex="0"><a href="../views/profile.php" style="color:var(--menu-text); text-decoration:none">MY ACCOUNT</a></div>
-                      </li>
-                      <li>
-                          <div class="menu-item" tabindex="0"><a href="../views/register.php" style="color:var(--menu-text); text-decoration:none">REGISTER</a></div>
-                      </li>
-                  </div>
-    </ul>
+    <div class="menu-body">
+      <span class="nav-label">Shop</span>
+      <a class="nav-link-item" href="../views/index.php">All Products</a>
+      <a class="nav-link-item" href="../views/user_fav.php">My Favourites</a>
+
+      <div class="nav-divider"></div>
+
+      <span class="nav-label">Orders</span>
+      <a class="nav-link-item" href="../views/order_list.php">My Orders</a>
+      <a class="nav-link-item" href="../views/cart.php">My Cart</a>
+    </div>
+
+    <div class="menu-bottom">
+    <a class="nav-link-item" href="../views/about.php">About Us</a>
+    <a class="nav-link-item" href="../views/profile.php">My Account</a>
+
+    <!-- ADMIN DASHBOARD LINK (only visible to admins) -->
+    <?php if (isset($_SESSION['roleID']) && $_SESSION['roleID'] == 2): ?>
+        <a class="nav-link-item" href="../admin/profile.php" style="color: #C9A84C; font-weight: 700;">
+            <i class="bi bi-crown-fill"></i> Admin Dashboard
+        </a>
+    <?php endif; ?>
+
+    <a class="nav-link-item" href="../views/register.php">Register</a>
+</div>
 
   </aside>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    (function(){
-      const hamburger = document.getElementById('hamburgerBtn');
-      const sideMenu = document.getElementById('sideMenu');
-      const overlay = document.getElementById('menuOverlay');
-      const closeBtn = document.getElementById('menuCloseBtn');
-
-      function openMenu(){
-        sideMenu.classList.add('open');
-        overlay.classList.add('visible');
-        sideMenu.setAttribute('aria-hidden','false');
-        overlay.setAttribute('aria-hidden','false');
-        closeBtn.focus();
-      }
-
-      function closeMenu(){
-        sideMenu.classList.remove('open');
-        overlay.classList.remove('visible');
-        sideMenu.setAttribute('aria-hidden','true');
-        overlay.setAttribute('aria-hidden','true');
-        hamburger.focus();
-      }
-
-      hamburger.addEventListener('click', openMenu);
-      closeBtn.addEventListener('click', closeMenu);
-      overlay.addEventListener('click', closeMenu);
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && sideMenu.classList.contains('open')) closeMenu();
-      });
-
-      document.querySelectorAll('.menu-item[data-toggle="collapse"]').forEach(btn => {
-        const controls = btn.getAttribute('aria-controls');
-        const submenu = document.getElementById(controls);
-        const sign = btn.querySelector('.toggle-sign');
-
-        function openSub(){
-          const scrollHeight = submenu.scrollHeight;
-          submenu.classList.add('open');
-          submenu.style.maxHeight = scrollHeight + 'px';
-          btn.setAttribute('aria-expanded','true');
-          submenu.setAttribute('aria-hidden','false');
-          if(sign) sign.classList.add('open');
-        }
-        function closeSub(){
-          submenu.style.maxHeight = 0;
-          submenu.classList.remove('open');
-          btn.setAttribute('aria-expanded','false');
-          submenu.setAttribute('aria-hidden','true');
-          if(sign) sign.classList.remove('open');
-        }
-
-        btn.addEventListener('click', function(e){
-          const isOpen = submenu.classList.contains('open');
-          if(isOpen) closeSub(); else openSub();
-        });
-
-        btn.addEventListener('keydown', function(e){
-          if(e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            btn.click();
-          }
-        });
-
-        closeSub();
-      });
-
-      window.addEventListener('resize', () => {
-        document.querySelectorAll('.submenu.open').forEach(s => {
-          s.style.maxHeight = s.scrollHeight + 'px';
-        });
-      });
-
-    })();
-  </script>
-
 </div>
-</body>
-</html>
+
+<script>
+(function(){
+  const hamburger = document.getElementById('hamburgerBtn');
+  const sideMenu  = document.getElementById('sideMenu');
+  const overlay   = document.getElementById('menuOverlay');
+  const closeBtn  = document.getElementById('menuCloseBtn');
+
+  function openMenu(){
+    sideMenu.classList.add('open');
+    overlay.classList.add('visible');
+    sideMenu.setAttribute('aria-hidden','false');
+    hamburger.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeMenu(){
+    sideMenu.classList.remove('open');
+    overlay.classList.remove('visible');
+    sideMenu.setAttribute('aria-hidden','true');
+    hamburger.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && sideMenu.classList.contains('open')) closeMenu();
+  });
+})();
+</script>

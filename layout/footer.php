@@ -32,22 +32,22 @@
         font-family: "Cinzel", serif;
       }
 
-      .footer-links {
+      .footer-linBHAT {
         list-style: none;
         padding: 0;
       }
 
-      .footer-links li {
+      .footer-linBHAT li {
         margin-bottom: 10px;
       }
 
-      .footer-links a {
+      .footer-linBHAT a {
         color: #aaa;
         text-decoration: none;
         transition: color 0.3s;
       }
 
-      .footer-links a:hover {
+      .footer-linBHAT a:hover {
         color: white;
       }
 
@@ -187,7 +187,7 @@
           </div>
           <div class="col-md-2 mb-4">
             <h5>Shop</h5>
-            <ul class="footer-links">
+            <ul class="footer-linBHAT">
               <li><a href="#">Men's Collection</a></li>
               <li><a href="#">Women's Collection</a></li>
               <li><a href="#">Accessories</a></li>
@@ -197,7 +197,7 @@
           </div>
           <div class="col-md-2 mb-4">
             <h5>Company</h5>
-            <ul class="footer-links">
+            <ul class="footer-linBHAT">
               <li><a href="#">About Us</a></li>
               <li><a href="#">Careers</a></li>
               <li><a href="#">Sustainability</a></li>
@@ -207,7 +207,7 @@
           </div>
           <div class="col-md-2 mb-4">
             <h5>Support</h5>
-            <ul class="footer-links">
+            <ul class="footer-linBHAT">
               <li><a href="#">Contact Us</a></li>
               <li><a href="#">Shipping Info</a></li>
               <li><a href="#">Returns</a></li>
@@ -217,7 +217,7 @@
           </div>
           <div class="col-md-2 mb-4">
             <h5>Legal</h5>
-            <ul class="footer-links">
+            <ul class="footer-linBHAT">
               <li><a href="#">Terms of Service</a></li>
               <li><a href="#">Privacy Policy</a></li>
               <li><a href="#">Cookie Policy</a></li>
