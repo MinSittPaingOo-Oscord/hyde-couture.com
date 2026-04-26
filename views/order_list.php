@@ -3,22 +3,22 @@
   include '../layout/nav.php';
   $userID = isset($_GET['userID']) ? intval($_GET['userID']) : 1;
 
-  $query = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderStatus ON orderr.orderStatus = orderStatus.orderStatusID WHERE orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
+  $query = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderstatus ON orderr.orderstatus = orderstatus.orderstatusID WHERE orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
   $result = $conn->query($query);
 
-  $queryActive = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderStatus ON orderr.orderStatus = orderStatus.orderStatusID WHERE orderr.orderStatus = 1 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
+  $queryActive = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderstatus ON orderr.orderstatus = orderstatus.orderstatusID WHERE orderr.orderstatus = 1 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
   $resultActive = $conn->query($queryActive);
 
-  $queryCompleted = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderStatus ON orderr.orderStatus = orderStatus.orderStatusID WHERE orderr.orderStatus = 2 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
+  $queryCompleted = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderstatus ON orderr.orderstatus = orderstatus.orderstatusID WHERE orderr.orderstatus = 2 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
   $resultCompleted = $conn->query($queryCompleted);
 
-  $queryFailed = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderStatus ON orderr.orderStatus = orderStatus.orderStatusID WHERE orderr.orderStatus = 3 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
+  $queryFailed = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderstatus ON orderr.orderstatus = orderstatus.orderstatusID WHERE orderr.orderstatus = 3 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
   $resultFailed = $conn->query($queryFailed);
 
-  $queryReturn = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderStatus ON orderr.orderStatus = orderStatus.orderStatusID WHERE orderr.orderStatus = 5 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
+  $queryReturn = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderstatus ON orderr.orderstatus = orderstatus.orderstatusID WHERE orderr.orderstatus = 5 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
   $resultReturn = $conn->query($queryReturn);
 
-  $queryCancal = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderStatus ON orderr.orderStatus = orderStatus.orderStatusID WHERE orderr.orderStatus = 6 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
+  $queryCancal = "SELECT * FROM orderr JOIN account ON orderr.accountID = account.accountID JOIN orderstatus ON orderr.orderstatus = orderstatus.orderstatusID WHERE orderr.orderstatus = 6 AND orderr.accountID = $userID ORDER BY orderr.orderDate DESC";
   $resultCancal = $conn->query($queryCancal);
 ?>
 <!DOCTYPE html>
@@ -281,7 +281,7 @@
                   <td data-label="Status">
                     <span class="status-badge"><?php echo $row['orderStatus'] ?></span>
                   </td>
-                  <td data-label="Sub Total"><?php echo number_format($row['totalCost']) . " MMK"?></td>
+                  <td data-label="Sub Total"><?php echo number_format($row['totalCost']) . " BHAT"?></td>
                   <td data-label="Action">
                     <a href="order_details.php?orderID=<?php echo $row['orderID']?>" class="check-detail">↘ CHECK DETAIL</a>
                   </td>
@@ -321,7 +321,7 @@
                   <td data-label="Status">
                     <span class="status-badge"><?php echo $rowActive['orderStatus'] ?></span>
                   </td>
-                  <td data-label="Sub Total"><?php echo number_format($rowActive['totalCost'])." MMK"?></td>
+                  <td data-label="Sub Total"><?php echo number_format($rowActive['totalCost'])." BHAT"?></td>
                   <td data-label="Action">
                     <a href="order_details.php?orderID=<?php echo $rowActive['orderID']?>" class="check-detail">↘ CHECK DETAIL</a>
                   </td>
@@ -360,7 +360,7 @@
                   <td data-label="Status">
                     <span class="status-badge"><?php echo $rowCompleted['orderStatus'] ?></span>
                   </td>
-                  <td data-label="Sub Total"><?php echo number_format($rowCompleted['totalCost'] )." MMK"?></td>
+                  <td data-label="Sub Total"><?php echo number_format($rowCompleted['totalCost'] )." BHAT"?></td>
                   <td data-label="Action">
                     <a href="order_details.php?orderID=<?php echo $rowCompleted['orderID']?>" class="check-detail">↘ CHECK DETAIL</a>
                   </td>
@@ -399,7 +399,7 @@
                   <td data-label="Status">
                     <span class="status-badge"><?php echo $rowFailed['orderStatus'] ?></span>
                   </td>
-                  <td data-label="Sub Total"><?php echo number_format($rowFailed['totalCost'])." MMK"?></td>
+                  <td data-label="Sub Total"><?php echo number_format($rowFailed['totalCost'])." BHAT"?></td>
                   <td data-label="Action">
                     <a href="order_details.php?orderID=<?php echo $rowFailed['orderID']?>" class="check-detail">↘ CHECK DETAIL</a>
                   </td>
@@ -438,7 +438,7 @@
                   <td data-label="Status">
                     <span class="status-badge"><?php echo $rowReturn['orderStatus'] ?></span>
                   </td>
-                  <td data-label="Sub Total"><?php echo number_fomat($rowReturn['totalCost']). "MMK"?></td>
+                  <td data-label="Sub Total"><?php echo number_fomat($rowReturn['totalCost']). "BHAT"?></td>
                   <td data-label="Action">
                     <a href="order_details.php?orderID=<?php echo $rowReturn['orderID']?>" class="check-detail">↘ CHECK DETAIL</a>
                   </td>
@@ -477,7 +477,7 @@
                   <td data-label="Status">
                     <span class="status-badge"><?php echo $rowCancal['orderStatus'] ?></span>
                   </td>
-                  <td data-label="Sub Total"><?php echo number_format($rowCancal['totalCost'])." MMK"?></td>
+                  <td data-label="Sub Total"><?php echo number_format($rowCancal['totalCost'])." BHAT"?></td>
                   <td data-label="Action">
                     <a href="order_details.php?orderID=<?php echo $rowCancal['orderID']?>" class="check-detail">↘ CHECK DETAIL</a>
                   </td>

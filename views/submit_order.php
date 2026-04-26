@@ -41,7 +41,7 @@
     position: fixed;
 }
 
-/* Safety: prevent layout leaks */
+/* Safety: prevent layout leaBHAT */
 .checkout-page * {
     box-sizing: border-box;
 }
@@ -278,7 +278,7 @@
             
         }
 
-        /* Top Payment Section (KBZ Pay + QR) */
+        /* Top Payment Section (KPlus + QR) */
         .top-payment-qr {
             display: flex;
             justify-content: space-between;
@@ -1126,48 +1126,48 @@
                 <div class='section-header'>SELECT PAYMENT METHOD</div>
                 <div class='payment-methods'>
 
-                    <label class='payment-card selected-card' data-logo='kpay.png' data-name='KBZ Pay'>
+                    <label class='payment-card selected-card' data-logo='kpay.png' data-name='KPlus'>
                         <div class='card-details'>
-                            <img src='kpay.png' alt='KBZ Pay Logo' class='logo-img'>
+                            <img src='kpay.png' alt='KPlus Logo' class='logo-img'>
                             <div class='text-info'>
                                 <span class='type'>Mobile Wallet</span>
-                                <span class='provider'>KBZ Pay</span>
+                                <span class='provider'>KPlus</span>
                             </div>
                         </div>
                         <input type='radio' name='detailed_payment' value='kbz_pay' checked>
                         <span class='checkmark'></span>
                     </label>
 
-                    <label class='payment-card' data-logo='kbz.png' data-name='KBZ Bank'>
+                    <label class='payment-card' data-logo='kbz.png' data-name='SCB Bank'>
                         <div class='card-details'>
-                            <img src='kbz.png' alt='KBZ Bank Logo' class='logo-img'>
+                            <img src='kbz.png' alt='SCB Bank Logo' class='logo-img'>
                             <div class='text-info'>
                                 <span class='type'>Bank Transfer</span>
-                                <span class='provider'>KBZ Bank</span>
+                                <span class='provider'>SCB Bank</span>
                             </div>
                         </div>
                         <input type='radio' name='detailed_payment' value='kbz_bank'>
                         <span class='checkmark'></span>
                     </label>
 
-                    <label class='payment-card' data-logo='uab.png' data-name='UAB Pay'>
+                    <label class='payment-card' data-logo='uab.png' data-name='Bangkok Bank'>
                         <div class='card-details'>
-                            <img src='uab.png' alt='UAB Pay Logo' class='logo-img'>
+                            <img src='uab.png' alt='Bangkok Bank Logo' class='logo-img'>
                             <div class='text-info'>
                                 <span class='type'>Mobile Wallet</span>
-                                <span class='provider'>UAB Pay</span>
+                                <span class='provider'>Bangkok Bank</span>
                             </div>
                         </div>
                         <input type='radio' name='detailed_payment' value='uab_pay'>
                         <span class='checkmark'></span>
                     </label>
 
-                    <label class='payment-card' data-logo='aya.png' data-name='AYA Pay'>
+                    <label class='payment-card' data-logo='aya.png' data-name='True Money'>
                         <div class='card-details'>
-                            <img src='aya.png' alt='AYA Pay Logo' class='logo-img'>
+                            <img src='aya.png' alt='True Money Logo' class='logo-img'>
                             <div class='text-info'>
                                 <span class='type'>Mobile Wallet</span>
-                                <span class='provider'>AYA Pay</span>
+                                <span class='provider'>True Money</span>
                             </div>
                         </div>
                         <input type='radio' name='detailed_payment' value='aya_pay'>
@@ -1186,10 +1186,10 @@
             <div class='top-payment-qr'>
                 <div class='kbz-pay-info'>
                     <div class='logo-row'>
-                        <img src='kpay.png' alt='KBZ Pay Logo' class='kbz-logo' id='qr-logo-img'>
+                        <img src='kpay.png' alt='KPlus Logo' class='kbz-logo' id='qr-logo-img'>
                         <div class='logo-text-info'>
                             <span class='mobile-wallet-text' id='qr-payment-type'>Mobile Wallet</span>
-                            <span class='kbz-pay-provider' id='qr-payment-provider'>KBZ Pay</span>
+                            <span class='kbz-pay-provider' id='qr-payment-provider'>KPlus</span>
                         </div>
                     </div>
 
@@ -1253,23 +1253,23 @@
             <div class='summary-grid'>
                 <div class='summary-item subtotal-row'>
                     <span class='summary-label'>Sub Total :</span>
-                    <span class='summary-value'>550,000 MMK</span>
+                    <span class='summary-value'>550,000 BHAT</span>
                 </div>
 
                 <div class='summary-item delivery-row'>
                     <span class='summary-label'>Delivery :</span>
-                    <span class='summary-value'>3,500 MMK</span>
+                    <span class='summary-value'>3,500 BHAT</span>
                 </div>
 
                 <div class='summary-item total-amount-row'>
                     <span class='total-amount-label'>Total Amount</span>
-                    <span class='total-amount-value'>553,500 MMK</span>
+                    <span class='total-amount-value'>553,500 BHAT</span>
                 </div>
 
                 <div class='summary-item payment-method-row'>
                     <div class='payment-method-details'>
                         <span class='summary-label' style='color: var(--color-text-dark); font-weight: normal;'>Payment Method :</span>
-                        <span id='summary-payment-name'>KBZ Pay</span>
+                        <span id='summary-payment-name'>KPlus</span>
                         <img src='kpay.png' alt='Payment Method Logo' class='payment-method-logo' id='summary-payment-logo'>
                     </div>
                     <div>
@@ -1338,27 +1338,27 @@
     // --- New Payment Data Object for Dynamic Updates ---
     const paymentDetails = {
         'kbz_pay': { // Matches input[value]
-            name: 'U Aung Aung',
+            name: 'Mr Aung Aung',
             phone: '09-123 456 789',
-            amount: '553,500 MMK',
+            amount: '553,500 BHAT',
             qrCodeSrc: 'qr.png' // Placeholder QR image
         },
         'kbz_bank': {
             name: 'Daw Mya Mya',
             phone: '001-234-567-890 (Account No)',
-            amount: '553,500 MMK',
+            amount: '553,500 BHAT',
             qrCodeSrc: 'qr_kbz_bank.png' // Placeholder QR image
         },
         'uab_pay': {
             name: 'U Hla Tun',
             phone: '09-444 555 666',
-            amount: '553,500 MMK',
+            amount: '553,500 BHAT',
             qrCodeSrc: 'qr_uab.png' // Placeholder QR image
         },
         'aya_pay': {
             name: 'Ma Thidar',
             phone: '09-777 888 999',
-            amount: '553,500 MMK',
+            amount: '553,500 BHAT',
             qrCodeSrc: 'qr_aya.png' // Placeholder QR image
         }
     };
@@ -1532,7 +1532,7 @@ if (checkedRadio) {
             });
         });
 
-        // 2. Detailed Payment Listener (KBZ Pay, KBZ Bank, etc.)
+        // 2. Detailed Payment Listener (KPlus, SCB Bank, etc.)
         detailedPaymentRadios.forEach(radio => {
             radio.addEventListener('change', (e) => {
                 updateDetailedPaymentSummary(e.target);
@@ -1569,7 +1569,7 @@ if (checkedRadio) {
             {'name_en': 'Pathein'}, {'name_en': 'Monywa'}, {'name_en': 'Meiktila'}, {'name_en': 'Taunggyi'}, {'name_en': 'Myitkyina'},
             {'name_en': 'Lashio'}, {'name_en': 'Sittwe'}, {'name_en': 'Pyay'}, {'name_en': 'Hinthada'}, {'name_en': 'Magway'},
             {'name_en': 'Myeik'}, {'name_en': 'Taungoo'}, {'name_en': 'Myingyan'}, {'name_en': 'Dawei'}, {'name_en': 'Pakokku'},
-            {'name_en': 'Pyin Oo Lwin'}, {'name_en': 'Hpa-An'}, {'name_en': 'Kyaukse'}, {'name_en': 'Shwebo'}, {'name_en': 'Sagaing'},
+            {'name_en': 'Pyin Oo Lwin'}, {'name_en': 'Hpa-An'}, {'name_en': 'KyauBHATe'}, {'name_en': 'Shwebo'}, {'name_en': 'Sagaing'},
             {'name_en': 'Tachileik'}, {'name_en': 'Hakha'}, {'name_en': 'Loikaw'}, {'name_en': 'Kengtung'}, {'name_en': 'Thanlyin'},
             {'name_en': 'Twantay'}, {'name_en': 'Kyauktan'}, {'name_en': 'Bogale'}, {'name_en': 'Pyapon'}, {'name_en': 'Kyaiklat'},
             {'name_en': 'Maubin'}, {'name_en': 'Nyaungdon'}, {'name_en': 'Dedaye'}, {'name_en': 'Kyaukpyu'}, {'name_en': 'Thandwe'},

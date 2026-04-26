@@ -894,7 +894,7 @@
                 <div class="col-md-6">
                   <div class="detail-item">
                     <div class="detail-label">SUB TOTAL  </div>
-                    <div class="detail-value"><?php echo number_format($row2['totalCost'])." MMK"?></div>
+                    <div class="detail-value"><?php echo number_format($row2['totalCost'])." BHAT"?></div>
                   </div>
                 </div>
               </div>
@@ -936,12 +936,12 @@
 
                 if($row_items['discountedPrice'] != null ){
                     $uncal = $row_items['discountedPrice'];
-                    echo "<div class='item-detail-row'><span class='item-detail-label'>Discounted Price</span><span class='item-detail-value'>".$row_items['discountedPrice']." MMK / product</span></div>";
+                    echo "<div class='item-detail-row'><span class='item-detail-label'>Discounted Price</span><span class='item-detail-value'>".$row_items['discountedPrice']." BHAT / product</span></div>";
                 }
                 else{
                     $uncal = $row_items['price'];
                     // echo "<div class='item-detail-row'><span class='item-detail-label'>Discounted Price</span><span class='item-detail-value'> - </span></div>";
-                    echo "<div class='item-detail-row'><span class='item-detail-label'>Price</span><span class='item-detail-value'>".$row_items['price']." MMK / product</span></div>";
+                    echo "<div class='item-detail-row'><span class='item-detail-label'>Price</span><span class='item-detail-value'>".$row_items['price']." BHAT / product</span></div>";
                   }
                 
                 $quantity = $row_items['quantity'];
@@ -973,11 +973,11 @@
                 echo "<div class='item-detail-row'><span class='item-detail-label'>Discount</span><span class='item-detail-value'>".$discount." %</span></div>";
                 }
 
-                echo "<div class='item-detail-row'><span class='item-detail-label'>Sub Total</span><span class='item-detail-value'>".$row_items['quantity'] * $uncal." MMK</span></div>";
+                echo "<div class='item-detail-row'><span class='item-detail-label'>Sub Total</span><span class='item-detail-value'>".$row_items['quantity'] * $uncal." BHAT</span></div>";
                 
                 if($discount != 0){
 
-                    echo "<div class='item-detail-row'><span class='item-detail-label'>Whole Sale Price</span><span class='item-detail-value'>".$row_items['quantity'] * $calculatedPrice." MMK</span></div>";
+                    echo "<div class='item-detail-row'><span class='item-detail-label'>Whole Sale Price</span><span class='item-detail-value'>".$row_items['quantity'] * $calculatedPrice." BHAT</span></div>";
                 
                 }
                 echo "<div class='item-detail-row'><span class='item-detail-label'>Size</span><span class='item-detail-value'>".$row_items['sizeName']."</span></div>";

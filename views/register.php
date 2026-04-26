@@ -3,377 +3,442 @@ include '../connection/connectdb.php';
 $currentPage = 'register.php';
 include '../layout/nav.php';
 ?>
-
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>User Registration</title>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous'>
-    <link href='https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Sancreek&family=Vollkorn:ital,wght@0,400;0,700;1,400&display=swap' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | HYDE COUTURE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Vollkorn:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
+        :root {
+            --green:      #006039;
+            --green-dark: #004d2e;
+            --gold:       #C9B037;
+            --gold-light: #f0e6a0;
+            --white:      #FFFFFF;
+            --cream:      #FAF8F4;
+            --black:      #111;
+            --gray-light: #F5F5F3;
+            --gray-mid:   #e8e4dc;
+            --gray-text:  #666;
         }
 
         body {
-            background: none;
-            background-color: #ffffff;
-        }
-
-        .register-container {
-            background-image: none;
-        }
-
-        .register_heading-font {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size : 15px;
-        }
-        
-        .register_text-font,
-        .form-control,
-        .form-select,
-        .form-check-label,
-        .register_login-link {
             font-family: 'Vollkorn', serif;
+            background: var(--cream);
+            color: var(--black);
         }
 
-        .register_rolex-green-bg {
-            background-color: #005A2B !important; 
+        /* ── Page layout ── */
+        .reg-page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px 90px;
         }
 
-        .register-btn {
-            background: linear-gradient(to right, #003c1f, #00c167);
-            border: none;
-            color: white;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
+        /* ── Header ── */
+        .reg-header {
+            text-align: center;
+            margin-bottom: 44px;
+            animation: fadeDown .7s ease both;
         }
-        .register-btn:hover {
-            background: linear-gradient(to right, #003d33, #00695c);
-            color: white;
+        .ornament {
+            display: flex; align-items: center; justify-content: center; gap: 14px;
+            margin-bottom: 22px;
         }
-        .register_login-link {
-            color: #004D40;
-            font-weight: 600;
+        .ornament-line { width: 70px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+        .ornament-line.r { background: linear-gradient(to left, transparent, var(--gold)); }
+        .ornament-diamond { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
+        .reg-eyebrow {
+            font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: 5px;
+            color: var(--green); text-transform: uppercase; margin-bottom: 10px;
+        }
+        .reg-title {
+            font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 600; color: var(--black); letter-spacing: 2px;
         }
 
-        .register_registration-container {
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center;
-            padding: 0px 0px 0px 0px;
-            margin : 0px 0px 0px 0px;
-            width : 100% !important;
+        /* ── Card shell ── */
+        .reg-card {
+            background: var(--white);
+            box-shadow: 0 8px 40px rgba(0,0,0,.07);
+            overflow: hidden;
+            animation: fadeUp .7s ease .1s both;
         }
-        .register_form-box {
-            background: white;
-            border-radius: 0px;
-            width: 100% !important;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+
+        /* ── Section blocBHATAT ── */
+        .reg-section {
+            padding: 32px 40px 28px;
+            border-bottom: 1px solid var(--gray-mid);
         }
-        
-        .form-control, .form-select {
-            border-radius: 0px;
-            padding: 10px 15px;
-            font-size: 0.95rem;
-            height: auto; 
+        .reg-section:last-child { border-bottom: none; }
+
+        .section-label {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 22px;
         }
+        .section-label-icon { color: var(--gold); font-size: .85rem; }
+        .section-label-text {
+            font-family: 'Cinzel', serif; font-size: .78rem;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--green);
+        }
+        .section-label-line {
+            flex: 1; height: 1px; background: var(--gray-mid);
+        }
+
+        /* ── Form grid ── */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full { grid-column: 1 / -1; }
         .form-group label {
-            display: none;
+            font-size: .73rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1.2px; color: var(--gray-text);
         }
-        .form-group {
-            margin-bottom: 0.5rem; 
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 11px 15px;
+            border: 1px solid var(--gray-mid);
+            background: var(--gray-light);
+            font-family: 'Vollkorn', serif; font-size: .95rem; color: var(--black);
+            border-radius: 0;
+            transition: border-color .25s, background .25s, box-shadow .25s;
+            -webkit-appearance: none;
         }
-
- 
-        
-        .register_form-box {
-            max-width: 100% !important; 
-            width: 100% !important; 
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(0,96,57,.08);
         }
+        .form-group textarea { resize: vertical; min-height: 80px; }
 
-
-        @media (min-width: 768px) {
-            .register_registration-container {
-                justify-content: flex-start; 
-                padding-top: 0px;
-                padding-bottom: 0px;
-                padding-left: 30px; 
-                padding-right: 30px;
-            }
-
-            .register_form-box {
-                max-width: 100%; 
-                width: 100%; 
-            }
-
-            .form-group {
-                margin-bottom: 0.8rem;
-            }
+        /* Avatar upload */
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            gap: 22px;
         }
-
-        @media (min-width: 1200px) {
-            .register_form-box {
-                max-width: 1200px; 
-                width: 100%;
-            }
-            
+        .avatar-preview-wrap {
+            position: relative;
+            width: 90px; height: 90px;
+            flex-shrink: 0;
+            cursor: pointer;
         }
+        .avatar-preview-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border: 2px solid var(--gray-mid);
+        }
+        .avatar-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,96,57,.65);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity .3s; color: var(--white); font-size: 1.2rem;
+        }
+        .avatar-preview-wrap:hover .avatar-overlay { opacity: 1; }
+        .avatar-ring {
+            position: absolute; inset: -6px;
+            border: 1px solid var(--gold);
+            pointer-events: none;
+        }
+        .avatar-hint { font-size: .85rem; color: var(--gray-text); font-style: italic; }
+        .avatar-hint strong { display: block; font-family: 'Cinzel', serif; font-size: .75rem; letter-spacing: 1px; color: var(--green); font-style: normal; margin-bottom: 4px; }
+        #profile-file { display: none; }
 
+        /* Terms */
+        .terms-row {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 24px 40px;
+            border-top: 1px solid var(--gray-mid);
+        }
+        .terms-checkbox {
+            width: 18px; height: 18px; flex-shrink: 0;
+            border: 2px solid var(--gray-mid); background: var(--gray-light);
+            cursor: pointer; appearance: none; -webkit-appearance: none;
+            margin-top: 3px; transition: border-color .2s, background .2s;
+        }
+        .terms-checkbox:checked {
+            background: var(--green); border-color: var(--green);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23fff' d='M6.5 11.5L3 8l1.4-1.4 2.1 2.1 4.6-4.6L12.5 5.4z'/%3E%3C/svg%3E");
+            background-size: contain;
+        }
+        .terms-text { font-size: .88rem; color: var(--gray-text); line-height: 1.6; }
+        .terms-text a { color: var(--green); text-decoration: underline; }
+
+        /* Submit */
+        .reg-footer {
+            padding: 28px 40px 36px;
+            display: flex; flex-direction: column; align-items: center; gap: 18px;
+        }
+        .reg-submit {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 52px;
+            background: var(--green);
+            color: var(--white);
+            font-family: 'Cinzel', serif; font-size: .82rem; letter-spacing: 2.5px;
+            text-transform: uppercase; border: none; cursor: pointer;
+            position: relative; overflow: hidden;
+            transition: background .3s, transform .2s;
+        }
+        .reg-submit::after {
+            content: '';
+            position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+            transition: left .5s;
+        }
+        .reg-submit:hover { background: var(--green-dark); transform: translateY(-2px); }
+        .reg-submit:hover::after { left: 100%; }
+        .login-prompt { font-size: .88rem; color: var(--gray-text); }
+        .login-prompt a { color: var(--green); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: border-color .2s; }
+        .login-prompt a:hover { border-color: var(--green); }
+
+        @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeUp   { from { opacity:0; transform:translateY(16px);  } to { opacity:1; transform:translateY(0); } }
+
+        @media (max-width: 640px) {
+            .reg-section { padding: 24px 20px 20px; }
+            .terms-row, .reg-footer { padding-left: 20px; padding-right: 20px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .avatar-upload { flex-direction: column; align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
-<div class="register_registration-container container-fluid p-0 d-flex">
 
-    <div class='register_form-box shadow-lg' id='signup-box'>
-            
-            <div class='register_header-compartment register_rolex-green-bg text-white py-3 mb-4'>
-                <h4 class='text-center register_heading-font m-0'>Register</h4>
-            </div>
-                
-            <form id='signup-form' class='px-4 pb-4' action="./register_action.php" method="POST" enctype="multipart/form-data">
-                <div class='row g-3'>
+<div class="reg-page">
 
-                    <div class='col-12 col-md-6 form-group'>
-                        <label class='form-label register_text-font' for='profile'>Profile</label>
-                        <input type='file' class='form-control register_text-font' id='profile' placeholder='Choose your profile photo' required name="profile" accept='*'>
-                    </div>
-
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='signup-name'>Full Name</label>
-                            <input type='text' class='form-control register_text-font' id='signup-name' placeholder='Enter your name' required name="name">
-                        </div>
-                        
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='signup-email'>Email</label>
-                            <input type='email' class='form-control register_text-font' id='signup-email' placeholder='Email' required name="email">
-                        </div>
-
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='signup-birthday'>Birthday</label>
-                            <input type='date' class='form-control register_text-font' id='signup-birthday' placeholder='mm/dd/yy' required name="birthday">
-                        </div>
-
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='phone'>Phone Number</label>
-                            <input type='text' class='form-control register_text-font' id='phone' placeholder='Enter your phone number' required name="phoneNumber">
-                        </div>
-                        
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='signup-password'>Passcode</label>
-                            <input type='password' class='form-control register_text-font' id='signup-password' placeholder='Enter your passcode' required name="passcode">
-                        </div>
-                        
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='signup-password'>Passcode Again</label>
-                            <input type='password' class='form-control register_text-font' id='signup-password' placeholder='Confirm passcode' required name="confirmPasscode">
-                        </div>
-
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='country'>Country</label>
-                            <select class='form-select register_text-font' id='country' required name="country">
-                                <option value=''>choose your country</option>
-                            </select>
-                        </div>
-                        
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='street'>Street</label>
-                            <input type='text' class='form-control register_text-font' id='street' placeholder='Enter your street' required name="street">
-                        </div>
-                        
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='city'>City</label>
-                            <select class='form-select register_text-font' id='city' required name="city">
-                                <option value=''>Choose your city</option>
-                            </select>
-                        </div>
-                        
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='township'>Township</label>
-                            <input type='text' class='form-control register_text-font' id='township' placeholder='Enter your township' required name="township">
-                        </div>
-
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='state'>State</label>
-                            <input type='text' class='form-control register_text-font' id='state' placeholder='Enter your state' required name="state">
-                        </div>
-                        
-                        <div class='col-12 col-md-6 form-group'>
-                            <label class='form-label register_text-font' for='postal'>Postal Code</label>
-                            <input type='text' class='form-control register_text-font' id='postal' placeholder='Enter your postal code' required name="postalCode">
-                        </div>
-                        
-                        <div class='col-12 form-group'>
-                            <label class='form-label register_text-font' for='complete_address'>Complete Address</label>
-                            <textarea class='form-control register_text-font' id='complete_address' rows='3' placeholder='Enter the complete address' required name="completeAddress"></textarea>
-                        </div>
-                        
-                        <div class='col-12 form-group'>
-                            <label class='form-label register_text-font' for='google_link'>Google Map Link</label>
-                            <input type='text' class='form-control register_text-font' id='google_link' placeholder='Enter the map link  (Optional)' name="mapLink">
-                        </div>
-                        
-                    </div>
-
-                    <div class='form-check mt-3 mb-4 d-flex align-items-start'>
-                        <input class='form-check-input me-2' type='checkbox' value='' id='terms-check' required name="termAccept">
-                        <label class='form-check-label register_text-font small' for='terms-check'>
-                            I have read and agree to the Website's Terms & Conditions and Privacy Policy.
-                        </label>
-                    </div>
-
-                    <div class='d-grid gap-2'>
-                        <button type='submit' class='btn btn-lg register-btn'>Register</button>
-                    </div>
-
-                    <p class='text-center mt-3 register_text-font'>
-                        Already a member? <a href='./login.php' class='register_login-link text-decoration-none'>Login</a>
-                    </p>
-                </form>
+    <!-- Header -->
+    <div class="reg-header">
+        <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+            <div class="ornament-line r"></div>
         </div>
-        
+        <p class="reg-eyebrow">Hyde Couture</p>
+        <h1 class="reg-title">Create Account</h1>
     </div>
-    
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL' crossorigin='anonymous'></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
 
-            // City data parsed from your JSON files
-            const myanmarCities = [
-                {'name_en': 'Yangon'}, {'name_en': 'Mandalay'}, {'name_en': 'Nay Pyi Taw'}, {'name_en': 'Mawlamyine'}, {'name_en': 'Bago'},
-                {'name_en': 'Pathein'}, {'name_en': 'Monywa'}, {'name_en': 'Meiktila'}, {'name_en': 'Taunggyi'}, {'name_en': 'Myitkyina'},
-                {'name_en': 'Lashio'}, {'name_en': 'Sittwe'}, {'name_en': 'Pyay'}, {'name_en': 'Hinthada'}, {'name_en': 'Magway'},
-                {'name_en': 'Myeik'}, {'name_en': 'Taungoo'}, {'name_en': 'Myingyan'}, {'name_en': 'Dawei'}, {'name_en': 'Pakokku'},
-                {'name_en': 'Pyin Oo Lwin'}, {'name_en': 'Hpa-An'}, {'name_en': 'Kyaukse'}, {'name_en': 'Shwebo'}, {'name_en': 'Sagaing'},
-                {'name_en': 'Tachileik'}, {'name_en': 'Hakha'}, {'name_en': 'Loikaw'}, {'name_en': 'Kengtung'}, {'name_en': 'Thanlyin'},
-                {'name_en': 'Twantay'}, {'name_en': 'Kyauktan'}, {'name_en': 'Bogale'}, {'name_en': 'Pyapon'}, {'name_en': 'Kyaiklat'},
-                {'name_en': 'Maubin'}, {'name_en': 'Nyaungdon'}, {'name_en': 'Dedaye'}, {'name_en': 'Kyaukpyu'}, {'name_en': 'Thandwe'},
-                {'name_en': 'Toungup'}, {'name_en': 'Gwa'}, {'name_en': 'Manaung'}, {'name_en': 'Kyeintali'}, {'name_en': 'Minbya'},
-                {'name_en': 'Mrauk-U'}, {'name_en': 'Pauktaw'}, {'name_en': 'Myebon'}, {'name_en': 'Ann'}, {'name_en': 'Buthidaung'},
-                {'name_en': 'Maungdaw'}, {'name_en': 'Kyauktaw'}, {'name_en': 'Ponnagyun'}, {'name_en': 'Rathedaung'}, {'name_en': 'Kawthaung'},
-                {'name_en': 'Bokpyin'}, {'name_en': 'Yebyu'}, {'name_en': 'Launglon'}, {'name_en': 'Thayetchaung'}, {'name_en': 'Tanintharyi'},
-                {'name_en': 'Kyunsu'}, {'name_en': 'Myitta'}, {'name_en': 'Kawkareik'}, {'name_en': 'Myawaddy'}, {'name_en': 'Kyeikdon'},
-                {'name_en': 'Kyeikmaraw'}, {'name_en': 'Hlaingbwe'} , {'name_en' : 'Other'}
-            ];
+    <div class="reg-card">
+        <form id="signup-form" action="./register_action.php" method="POST" enctype="multipart/form-data">
 
-            const thailandCities = [
-                {'name_en': 'Bangkok'}, {'name_en': 'Samut Prakan'}, {'name_en': 'Nonthaburi'}, {'name_en': 'Pathum Thani'}, {'name_en': 'Phra Nakhon Si Ayutthaya'},
-                {'name_en': 'Ang Thong'}, {'name_en': 'Loburi'}, {'name_en': 'Sing Buri'}, {'name_en': 'Chai Nat'}, {'name_en': 'Saraburi'},
-                {'name_en': 'Chon Buri'}, {'name_en': 'Rayong'}, {'name_en': 'Chanthaburi'}, {'name_en': 'Trat'}, {'name_en': 'Chachoengsao'},
-                {'name_en': 'Prachin Buri'}, {'name_en': 'Nakhon Nayok'}, {'name_en': 'Sa Kaeo'}, {'name_en': 'Nakhon Ratchasima'}, {'name_en': 'Buri Ram'},
-                {'name_en': 'Surin'}, {'name_en': 'Si Sa Ket'}, {'name_en': 'Ubon Ratchathani'}, {'name_en': 'Yasothon'}, {'name_en': 'Chaiyaphum'},
-                {'name_en': 'Amnat Charoen'}, {'name_en': 'Bueng Kan'}, {'name_en': 'Nong Bua Lam Phu'}, {'name_en': 'Khon Kaen'}, {'name_en': 'Udon Thani'},
-                {'name_en': 'Loei'}, {'name_en': 'Nong Khai'}, {'name_en': 'Maha Sarakham'}, {'name_en': 'Roi Et'}, {'name_en': 'Kalasin'},
-                {'name_en': 'Sakon Nakhon'}, {'name_en': 'Nakhon Phanom'}, {'name_en': 'Mukdahan'}, {'name_en': 'Chiang Mai'}, {'name_en': 'Lamphun'},
-                {'name_en': 'Lampang'}, {'name_en': 'Uttaradit'}, {'name_en': 'Phrae'}, {'name_en': 'Nan'}, {'name_en': 'Phayao'},
-                {'name_en': 'Chiang Rai'}, {'name_en': 'Mae Hong Son'}, {'name_en': 'Nakhon Sawan'}, {'name_en': 'Uthai Thani'}, {'name_en': 'Kamphaeng Phet'},
-                {'name_en': 'Tak'}, {'name_en': 'Sukhothai'}, {'name_en': 'Phitsanulok'}, {'name_en': 'Phichit'}, {'name_en': 'Phetchabun'},
-                {'name_en': 'Ratchaburi'}, {'name_en': 'Kanchanaburi'}, {'name_en': 'Suphan Buri'}, {'name_en': 'Nakhon Pathom'}, {'name_en': 'Samut Sakhon'},
-                {'name_en': 'Samut Songkhram'}, {'name_en': 'Phetchaburi'}, {'name_en': 'Prachuap Khiri Khan'}, {'name_en': 'Nakhon Si Thammarat'}, {'name_en': 'Krabi'},
-                {'name_en': 'Phangnga'}, {'name_en': 'Phuket'}, {'name_en': 'Surat Thani'}, {'name_en': 'Ranong'}, {'name_en': 'Chumphon'},
-                {'name_en': 'Songkhla'}, {'name_en': 'Satun'}, {'name_en': 'Trang'}, {'name_en': 'Phatthalung'}, {'name_en': 'Pattani'},
-                {'name_en': 'Yala'}, {'name_en': 'Narathiwat'}, {'name_en' : 'Other'}
-            ];
+            <!-- Section 1: Identity -->
+            <div class="reg-section">
+                <div class="section-label">
+                    <i class="fas fa-user section-label-icon"></i>
+                    <span class="section-label-text">Personal Details</span>
+                    <div class="section-label-line"></div>
+                </div>
 
-            const countrySelect = document.getElementById('country');
-            const citySelect = document.getElementById('city');
+                <!-- Avatar row -->
+                <div class="avatar-upload mb-4">
+                    <div class="avatar-preview-wrap" onclick="document.getElementById('profile-file').click()">
+                        <img src="../image/placeholder.jpg" id="avatar-img" alt="Profile Photo">
+                        <div class="avatar-ring"></div>
+                        <div class="avatar-overlay"><i class="fas fa-camera"></i></div>
+                    </div>
+                    <div class="avatar-hint">
+                        <strong>Profile Photo</strong>
+                        Click the image to upload your photo
+                    </div>
+                    <input type="file" id="profile-file" name="profile" accept="image/*" required>
+                </div>
 
-            // Populate country dropdown
-            const countries = ['Myanmar', 'Thailand'];
-            countries.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                countrySelect.appendChild(opt);
-            });
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="reg-name">Full Name</label>
+                        <input type="text" id="reg-name" name="name" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-phone">Phone Number</label>
+                        <input type="text" id="reg-phone" name="phoneNumber" placeholder="+95 9XX XXX XXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-birthday">Birthday</label>
+                        <input type="date" id="reg-birthday" name="birthday" required>
+                    </div>
+                </div>
+            </div>
 
-            // Function to handle city population based on selected country
-            const populateCities = () => {
-                const country = countrySelect.value;
-                citySelect.innerHTML = '<option value="">Choose your city</option>'; // Reset cities
+            <!-- Section 2: Security -->
+            <div class="reg-section">
+                <div class="section-label">
+                    <i class="fas fa-lock section-label-icon"></i>
+                    <span class="section-label-text">Security</span>
+                    <div class="section-label-line"></div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="reg-pass">Passcode</label>
+                        <input type="password" id="reg-pass" name="passcode" placeholder="Create a passcode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-pass2">Confirm Passcode</label>
+                        <input type="password" id="reg-pass2" name="confirmPasscode" placeholder="Repeat your passcode" required>
+                    </div>
+                </div>
+                <div id="pass-msg" style="font-size:.82rem;margin-top:8px;display:none;"></div>
+            </div>
 
-                let cities = [];
-                if (country === 'Myanmar') {
-                    cities = myanmarCities.map(city => city.name_en);
-                } else if (country === 'Thailand') {
-                    cities = thailandCities.map(city => city.name_en);
-                }
+            <!-- Section 3: Address -->
+            <div class="reg-section">
+                <div class="section-label">
+                    <i class="fas fa-map-marker-alt section-label-icon"></i>
+                    <span class="section-label-text">Delivery Address</span>
+                    <div class="section-label-line"></div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" name="country" required>
+                            <option value="">— Select Country —</option>
+                            <option value="Myanmar">Myanmar</option>
+                            <option value="Thailand">Thailand</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <select id="city" name="city" required>
+                            <option value="">— Select City —</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="street">Street</label>
+                        <input type="text" id="street" name="street" placeholder="Street / Road" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="township">Township</label>
+                        <input type="text" id="township" name="township" placeholder="Township / District" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State / Region</label>
+                        <input type="text" id="state" name="state" placeholder="State or Region" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postal">Postal Code</label>
+                        <input type="text" id="postal" name="postalCode" placeholder="Postal / ZIP Code" required>
+                    </div>
+                    <div class="form-group full">
+                        <label for="complete_address">Complete Address</label>
+                        <textarea id="complete_address" name="completeAddress" placeholder="Full address as it appears on a package" required></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label for="google_link">Google Map Link <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+                        <input type="url" id="google_link" name="mapLink" placeholder="https://maps.app.goo.gl/...">
+                    </div>
+                </div>
+            </div>
 
-                cities.forEach(city => {
-                    const opt = document.createElement('option');
-                    opt.value = city;
-                    opt.textContent = city;
-                    citySelect.appendChild(opt);
-                });
-                
-                updateCompleteAddress();
-            };
+            <!-- Terms -->
+            <div class="terms-row">
+                <input class="terms-checkbox" type="checkbox" id="terms-check" name="termAccept" required>
+                <label class="terms-text" for="terms-check">
+                    I have read and agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a> of Hyde Couture.
+                </label>
+            </div>
 
-            // On country change, load corresponding cities
-            countrySelect.addEventListener('change', populateCities);
+            <!-- Submit -->
+            <div class="reg-footer">
+                <button type="submit" class="reg-submit">
+                    <i class="fas fa-crown"></i> Create Account
+                </button>
+                <p class="login-prompt">Already a member? <a href="login.php">Sign in here</a></p>
+            </div>
 
-            // Auto-fill complete address when other address fields change
-            const addressFields = ['street', 'township', 'state', 'postal', 'country', 'city'];
-            
-            // Function to combine address parts
-            function updateCompleteAddress() {
-                const street = document.getElementById('street').value;
-                const township = document.getElementById('township').value;
-                const state = document.getElementById('state').value;
-                const postal = document.getElementById('postal').value;
-                const country = document.getElementById('country').value;
-                const city = document.getElementById('city').value;
-                
-                let parts = [];
-                
-                // Add parts in the desired order
-                if (street) parts.push(street);
-                if (township) parts.push(township);
-                if (state) parts.push(state);
-                if (city) parts.push(city);
-                if (country) parts.push(country);
-                
-                let completeAddress = parts.join(', ');
-                
-                // Append postal code with a space if it exists
-                if (postal) {
-                    completeAddress += (completeAddress ? ' ' : '') + postal;
-                }
-                
-                document.getElementById('complete_address').value = completeAddress;
-            }
+        </form>
+    </div>
+</div>
 
-            // Attach event listeners to address fields
-            addressFields.forEach(field => {
-                const element = document.getElementById(field);
-                if (element) {
-                    // 'change' for selects, 'input' for text fields
-                    element.addEventListener('change', updateCompleteAddress);
-                    if (element.tagName.toLowerCase() !== 'select') {
-                        element.addEventListener('input', updateCompleteAddress);
-                    }
-                }
-            });
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-            // Optional: Form submission handler
-            document.getElementById('signup-form').addEventListener('submit', function(e) {
-                // e.preventDefault(); 
-                console.log('Form submitted!');
-            });
+    // ── Avatar preview ──
+    document.getElementById('profile-file').addEventListener('change', function () {
+        if (!this.files[0]) return;
+        const r = new FileReader();
+        r.onload = e => document.getElementById('avatar-img').src = e.target.result;
+        r.readAsDataURL(this.files[0]);
+    });
+
+    // ── City data ──
+    const cities = {
+        Myanmar: ['Yangon','Mandalay','Nay Pyi Taw','Mawlamyine','Bago','Pathein','Monywa','Meiktila','Taunggyi','Myitkyina','Lashio','Sittwe','Pyay','Hinthada','Magway','Myeik','Taungoo','Myingyan','Dawei','Pakokku','Pyin Oo Lwin','Hpa-An','KyauBHATATe','Shwebo','Sagaing','Tachileik','Hakha','Loikaw','Kengtung','Thanlyin','Twantay','Kyauktan','Bogale','Pyapon','Kyaiklat','Maubin','Nyaungdon','Dedaye','Kyaukpyu','Thandwe','Toungup','Gwa','Manaung','Kyeintali','Minbya','Mrauk-U','Pauktaw','Myebon','Ann','Buthidaung','Maungdaw','Kyauktaw','Ponnagyun','Rathedaung','Kawthaung','Bokpyin','Yebyu','Launglon','Thayetchaung','Tanintharyi','Kyunsu','Myitta','Kawkareik','Myawaddy','Kyeikdon','Kyeikmaraw','Hlaingbwe','Other'],
+        Thailand: ['Bangkok','Samut Prakan','Nonthaburi','Pathum Thani','Phra Nakhon Si Ayutthaya','Ang Thong','Loburi','Sing Buri','Chai Nat','Saraburi','Chon Buri','Rayong','Chanthaburi','Trat','Chachoengsao','Prachin Buri','Nakhon Nayok','Sa Kaeo','Nakhon Ratchasima','Buri Ram','Surin','Si Sa Ket','Ubon Ratchathani','Yasothon','Chaiyaphum','Amnat Charoen','Bueng Kan','Nong Bua Lam Phu','Khon Kaen','Udon Thani','Loei','Nong Khai','Maha Sarakham','Roi Et','Kalasin','Sakon Nakhon','Nakhon Phanom','Mukdahan','Chiang Mai','Lamphun','Lampang','Uttaradit','Phrae','Nan','Phayao','Chiang Rai','Mae Hong Son','Nakhon Sawan','Uthai Thani','Kamphaeng Phet','Tak','Sukhothai','Phitsanulok','Phichit','Phetchabun','Ratchaburi','Kanchanaburi','Suphan Buri','Nakhon Pathom','Samut Sakhon','Samut Songkhram','Phetchaburi','Prachuap Khiri Khan','Nakhon Si Thammarat','Krabi','Phangnga','Phuket','Surat Thani','Ranong','Chumphon','Songkhla','Satun','Trang','Phatthalung','Pattani','Yala','Narathiwat','Other']
+    };
+
+    const countryEl = document.getElementById('country');
+    const cityEl    = document.getElementById('city');
+
+    countryEl.addEventListener('change', () => {
+        const list = cities[countryEl.value] || [];
+        cityEl.innerHTML = '<option value="">— Select City —</option>';
+        list.forEach(c => {
+            const o = document.createElement('option');
+            o.value = o.textContent = c;
+            cityEl.appendChild(o);
         });
-    </script>
+        updateAddress();
+    });
 
+    // ── Auto-fill complete address ──
+    function updateAddress() {
+        const parts = [
+            document.getElementById('street').value,
+            document.getElementById('township').value,
+            document.getElementById('state').value,
+            cityEl.value,
+            countryEl.value
+        ].filter(Boolean);
+        let addr = parts.join(', ');
+        const postal = document.getElementById('postal').value;
+        if (postal) addr += (addr ? ' ' : '') + postal;
+        document.getElementById('complete_address').value = addr;
+    }
+
+    ['street','township','state','postal'].forEach(id => {
+        document.getElementById(id).addEventListener('input', updateAddress);
+    });
+    cityEl.addEventListener('change', updateAddress);
+
+    // ── Passcode match indicator ──
+    const p1  = document.getElementById('reg-pass');
+    const p2  = document.getElementById('reg-pass2');
+    const msg = document.getElementById('pass-msg');
+
+    function checkPass() {
+        if (!p2.value) { msg.style.display = 'none'; return; }
+        if (p1.value === p2.value) {
+            msg.style.display = 'block';
+            msg.style.color   = '#006039';
+            msg.textContent   = '✓ Passcodes match';
+        } else {
+            msg.style.display = 'block';
+            msg.style.color   = '#b91c1c';
+            msg.textContent   = '✗ Passcodes do not match';
+        }
+    }
+    p1.addEventListener('input', checkPass);
+    p2.addEventListener('input', checkPass);
+
+});
+</script>
+
+<?php include '../layout/footer.php'; ?>
 </body>
 </html>
-<?php
-    include '../layout/footer.php';
-?>

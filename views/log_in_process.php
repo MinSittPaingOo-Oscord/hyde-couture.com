@@ -18,8 +18,9 @@ if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $_SESSION['accountID'] = $row['accountID']; 
         $_SESSION['login'] = true;  
+        $_SESSION['roleID']   = $row['roleID'];
         $_SESSION['show_login_modal'] = true;
-        header("Location: /hyde.com/views/profile.php");
+        header("Location: ./profile.php");
         exit();        
         exit();
 
@@ -27,7 +28,7 @@ if ($result->num_rows > 0) {
     $_SESSION['alert'] = "Invalid Login";
     $_SESSION['show_alert'] = true;
     $_SESSION['login'] = false;
-    header("Location: /hyde.com/views/profile.php");
+    header("Location: ./profile.php");
     exit();
 }
 
