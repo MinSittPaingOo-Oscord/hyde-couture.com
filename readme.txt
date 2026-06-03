@@ -14,4 +14,4 @@ hyde.com
     -   views
         = other views files 
     
-Database Setup >> hyde.sql >> utf8mb3_general_ci
+Database Setup >> hyde.sql >> utf8mb4_general_ci
