@@ -29,15 +29,16 @@ The directory layout organizes core database utilities, global templates, user v
 HYDE-COUTURE.COM-MAIN/
 │
 ├── admin/                  # Administrative management core panel
-│   ├── layout/             # Back-office theme elements (header.php, nav.php, etc.)
+│   ├── layout/             # Back-office theme elements (header.php, etc.)
 │   ├── *category.php       # Category management (add, edit, delete parent/child)
 │   ├── *product.php        # Core catalog configurations and temp buffers
 │   ├── *order.php          # Detailed administrative order tracking pipelines
 │   └── *customer.php       # Profile setups for manual/registered customer logs
+|   └── *others     
 │
 ├── connection/             # Handles core continuous database session configurations
 │
-├── database/               # Relational SQL schemas and data seeds
+├── database/               # The `database.sql` file is included in this folder. If you want to run the web system on your device, import this file into your                                   database. Please use `utf8mb4_general_ci` as the database collation. (USE utf8mb4_general_ci for Collation TYPE)
 │
 ├── image/                  # Upload directory storing product photos & payment slips
 │
