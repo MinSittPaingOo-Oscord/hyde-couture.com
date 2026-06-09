@@ -76,6 +76,17 @@ This project was developed collaboratively by the following team members. Each m
 | **Min Sitt Paing Oo**   | Backend Developer, Database Administrator, Project Manager | Developed the full Admin Dashboard Panel, except for the product management section. Also handled the account registration system, user-side order list, and order detail features. Managed database-related tasks and project coordination. |
 | **Kaung Si Thu**        | Backend Developer                                          | Developed the product management section in the Admin Dashboard Panel. Also handled the complete backend system for the user-side website.                                                                                                   |
 
+## 🤝 Volunteer Contributors
+
+The following volunteers supported the project during the early planning and design stage. Their contributions helped the development team prepare a clear visual direction before starting the actual website implementation.
+
+| Volunteer Name        | Contribution Area | Responsibilities                                                                                                                                                                                                                                                  |
+| --------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **May Myat Noe Phyu** | UI/UX Design      | Designed the initial website interface using Figma before the development process began. Her contribution helped the team present the website concept to the client, collect feedback, and confirm whether the proposed design matched the client’s requirements. |
+| **Min Thu Khaing**    | UI/UX Design      | Assisted in preparing the UI/UX design plan through Figma during the project preparation stage. His work supported the team in explaining the website layout, page structure, and design direction to the client before moving into development.                  |
+
+
+
 ## 🏢 Project Information and Ownership
 
 The **Hyde Couture E-commerce Platform** is a custom website system developed under **Ociolink Company Limited** for the **Hyde Couture Clothing Brand**. This project was created for **Vivian Nora & Lucius Vision** to support online product display, customer account management, order processing, payment slip submission, and admin dashboard management.
