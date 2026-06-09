@@ -65,6 +65,33 @@ User Interface: HTML5, Native CSS (style.css), JavaScript , Bootstrap
 
 Session State: Native PHP Cookie/Session tracking
 
+## 📊 System Analysis and Design
+
+The `System Analysis Design` folder contains the system planning and design diagrams for the Hyde Couture E-commerce Platform. These diagrams help explain the system structure, user interactions, data flow, database design, and overall system process.
+
+```text
+System Analysis Design/
+│
+├── Data Flow Diagram.jpg
+│   └── Shows how data moves through the system, including product data, customer data, order information, payment records, and admin processes.
+│
+├── Hyde Admin Panel - Use Case Diagram.jpg
+│   └── Describes the main actions available to the admin, such as managing products, categories, stock, discounts, customers, and orders.
+│
+├── Hyde Customer Side - Use Case Diagram.jpg
+│   └── Shows the main customer-side actions, including browsing products, registering accounts, logging in, managing profiles, using the cart, and placing orders.
+│
+├── Hyde ER Diagram.pdf
+│   └── Represents the database structure of the system, including tables, relationships, and how different data entities are connected.
+│
+├── Hyde Use Case Diagram.png
+│   └── Provides an overall use case view of the system and shows how users interact with the main features of the website.
+│
+└── Hyde context Diagram.jpg
+    └── Shows the high-level relationship between the Hyde Couture system, customers, admins, and external system interactions.
+```
+
+
 ## 👥 Team Members and Responsibilities
 
 This project was developed collaboratively by the following team members. Each member contributed to specific parts of the **Hyde Couture E-commerce Platform** based on their assigned roles and responsibilities.
