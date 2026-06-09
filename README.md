@@ -75,3 +75,30 @@ This project was developed collaboratively by the following team members. Each m
 | **Nandar Kyaw**         | Frontend Developer                                         | To be updated.                                                                                                                                                                                                                               |
 | **Min Sitt Paing Oo**   | Backend Developer, Database Administrator, Project Manager | Developed the full Admin Dashboard Panel, except for the product management section. Also handled the account registration system, user-side order list, and order detail features. Managed database-related tasks and project coordination. |
 | **Kaung Si Thu**        | Backend Developer                                          | Developed the product management section in the Admin Dashboard Panel. Also handled the complete backend system for the user-side website.                                                                                                   |
+
+## 🏢 Project Information and Ownership
+
+The **Hyde Couture E-commerce Platform** is a custom website system developed under **Ociolink Company Limited**. This project was created specifically for the **Hyde Couture Clothing Brand** to support its online business operations, including product display, customer account management, order processing, payment slip submission, and administrative management.
+
+The website system was developed as a professional client-based project for **Vivian Nora & Lucius**, representing the Hyde Couture Clothing Brand. The main purpose of this system is to provide Hyde Couture with a functional, organized, and manageable online platform where customers can browse products, place orders, manage their accounts, and interact with the brand through a digital storefront.
+
+All development work, system structure, database design, backend logic, frontend implementation, and administrative features were carried out under the ownership and supervision of **Ociolink Company Limited**. Therefore, the project ownership, development rights, and system management responsibility belong to **Ociolink Company Limited**, unless otherwise stated in a separate agreement with the client.
+
+This project reflects the company’s work in building practical business software solutions for real-world commercial use. The system was designed to help the Hyde Couture Clothing Brand manage its online sales process more efficiently, reduce manual workload, improve customer experience, and provide better control over product, stock, discount, order, and customer-related data.
+
+### Company Details
+
+| Information                     | Details                                                                                                               |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Company Name**                | Ociolink Company Limited                                                                                              |
+| **Company Registration Number** | 144736648                                                                                                             |
+| **Project Developed For**       | Hyde Couture Clothing Brand                                                                                           |
+| **Client Name**                 | Vivian Nora & Lucius                                                                                                  |
+| **Project Ownership**           | Ociolink Company Limited                                                                                              |
+| **Company Email**               | [ociolinksoftware4@gmail.com](mailto:ociolinksoftware4@gmail.com)                                                     |
+| **Company Address**             | No.120/7, 62nd Road, between 18th Street and 19th Street, Dawnabwar Ward, Aungmyaytharzan Township, Mandalay, Myanmar |
+
+### Ownership Notice
+
+This website system is officially developed under **Ociolink Company Limited** for the **Hyde Couture Clothing Brand**. The source code, database structure, project architecture, and related technical implementation are considered part of the project assets managed by Ociolink Company Limited. Any future updates, maintenance, modifications, or system improvements should be handled with permission from the project owner or authorized development team.
+
