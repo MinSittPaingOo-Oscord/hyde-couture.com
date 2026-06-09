@@ -38,7 +38,7 @@ HYDE-COUTURE.COM-MAIN/
 │
 ├── connection/             # Handles core continuous database session configurations
 │
-├── database/               # The `database.sql` file is included in this folder. If you want to run the web system on your device, import this file into your                                   database. Please use `utf8mb4_general_ci` as the database collation. (USE utf8mb4_general_ci for Collation TYPE)
+├── database/               # The `database.sql` file is included in this folder. If you want to run the web system on your device, import this file into your   database. Please use `utf8mb4_general_ci` as the database collation. (USE utf8mb4_general_ci for Collation TYPE)
 │
 ├── image/                  # Upload directory storing product photos & payment slips
 │
@@ -50,6 +50,7 @@ HYDE-COUTURE.COM-MAIN/
 │   ├── index.php           # Catalog home display dashboard
 │   ├── upload_payment.php  # Client transaction slip storage processor
 │   └── profile.php         # Customer dashboard & personal preferences data
+|   └── *others   
 │
 ├── index.php               # Front-facing global directory pointer
 └── readme.txt              # Standard system legacy execution text notes
