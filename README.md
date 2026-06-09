@@ -65,3 +65,13 @@ User Interface: HTML5, Native CSS (style.css), JavaScript , Bootstrap
 
 Session State: Native PHP Cookie/Session tracking
 
+## 👥 Team Members and Responsibilities
+
+This project was developed collaboratively by the following team members. Each member contributed to specific parts of the Hyde Couture E-commerce Platform.
+
+| Team Member             | Role                                                       | Responsibilities                                                                                                                                                                                                                             |
+| ----------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Lin Khant Min Maung** | Frontend Developer                                         | To be updated.                                                                                                                                                                                                                               |
+| **Nandar Kyaw**         | Frontend Developer                                         | To be updated.                                                                                                                                                                                                                               |
+| **Min Sitt Paing Oo**   | Backend Developer, Database Administrator, Project Manager | Developed the full Admin Dashboard Panel, except for the product management section. Also handled the account registration system, user-side order list, and order detail features. Managed database-related tasks and project coordination. |
+| **Kaung Si Thu**        | Backend Developer                                          | Developed the product management section in the Admin Dashboard Panel. Also handled the complete backend system for the user-side website.                                                                                                   |
