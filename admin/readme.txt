@@ -1,8 +1,1 @@
-Project Structure
 
-admin 
-  - layout 
-    - header.php
-    - login_error_message.php
-  - other PHP files 
-  - style.css
