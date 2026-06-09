@@ -1,1 +1,1 @@
-you need to unzip this file.
+Images should be placed inside this folder. However, since the project contains a large number of image files, they are not included in this GitHub repository. Please add the required images manually into this folder when setting up the project locally.
