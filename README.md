@@ -111,7 +111,7 @@ The following volunteers supported the project during the early planning and des
 
 | Volunteer Name        | GitHub Username | Contribution Area | Responsibilities                                                                                                                                                                                                                                                  |
 | --------------------- | --------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **May Myat Noe Phyu** | `@username`     | UI/UX Design      | Designed the initial website interface using Figma before the development process began. Her contribution helped the team present the website concept to the client, collect feedback, and confirm whether the proposed design matched the client’s requirements. |
+| **May Myat Noe Phyu** | `@MayMyatNoePhyu`     | UI/UX Design      | Designed the initial website interface using Figma before the development process began. Her contribution helped the team present the website concept to the client, collect feedback, and confirm whether the proposed design matched the client’s requirements. |
 | **Min Thu Khaing**    | `MoriartyLink`     | UI/UX Design      | Assisted in preparing the UI/UX design plan through Figma during the project preparation stage. His work supported the team in explaining the website layout, page structure, and design direction to the client before moving into development.                  |
 
 
