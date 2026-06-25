@@ -2,6 +2,7 @@
 
 A functional full-stack e-commerce web application built using PHP, custom CSS styling, and a relational database backend. This platform manages user actions, cart mechanisms, custom product parameters, and a powerful administrative backend for order processing and inventory controls.
 
+Live Demo -> http://hyde-demo.atwebpages.com/
 ---
 
 ## 🚀 Features
